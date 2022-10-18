@@ -6,4 +6,14 @@ function forSum (array) {
     return sum;
 }
 
-module.exports = { forSum };
+function whileSum (array) {
+    let index = 0; 
+    let sum   = 0;
+    while (index < array.length) {
+        sum += array[index]; 
+        index++;
+    }
+    return sum;
+}
+
+module.exports = { forSum, whileSum };
