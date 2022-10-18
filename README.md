@@ -1,2 +1,2 @@
 # javascript-challenges
-A collection of JavaScript challenges that I've devised for myself.
+A collection of test-driven JavaScript challenges that I've compiled from across the web to challenge myself.
