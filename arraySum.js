@@ -31,4 +31,6 @@ function tailRecursiveSum (array, sum = 0) {
         : tailRecursiveSum(array.slice(1), array[0] + sum);
 }
 
-module.exports = { forSum, whileSum, reduceSum, recursiveSum, tailRecursiveSum };
+module.exports = { 
+    forSum, whileSum, reduceSum, recursiveSum, tailRecursiveSum 
+};
