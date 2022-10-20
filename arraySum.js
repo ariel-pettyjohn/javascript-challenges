@@ -25,4 +25,10 @@ function recursiveSum (array) {
     return array.length === 0 ? 0 : array[0] + recursiveSum(array.slice(1));
 }
 
-module.exports = { forSum, whileSum, reduceSum, recursiveSum };
+function tailRecursiveSum (array, sum = 0) {
+    return array.length === 0
+        ? sum
+        : tailRecursiveSum(array.slice(1), array[0] + sum);
+}
+
+module.exports = { forSum, whileSum, reduceSum, recursiveSum, tailRecursiveSum };
