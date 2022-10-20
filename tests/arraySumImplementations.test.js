@@ -2,24 +2,31 @@ const {
     forSum, whileSum, reduceSum, recursiveSum, tailRecursiveSum 
 } = require('../arraySumImplementations');
 
-const array = [1, 2, 3, 4, 5];
+const tests = [
+    [[1, 2, 3, 4,  5], 15],
+    [[2, 4, 6, 8, 10], 30]
+];
 
-test('forSum of [1, 2, 3, 4, 5] should be 15', () => {
-    expect(forSum(array)).toBe(15);
-});
+tests.forEach(([array, expectedValue]) => {
+    const text = `of ${array} should be ${expectedValue}`;
 
-test('whileSum of [1, 2, 3, 4, 5] should be 15', () => {
-    expect(whileSum(array)).toBe(15);
-});
-
-test('reduceSum of [1, 2, 3, 4, 5] should be 15', () => {
-    expect(reduceSum(array)).toBe(15);
-});
-
-test('recursiveSum of [1, 2, 3, 4, 5] should be 15', () => {
-    expect(recursiveSum(array)).toBe(15);
-});
-
-test('tailRecursiveSum of [1, 2, 3, 4, 5] should be 15', () => {
-    expect(tailRecursiveSum(array)).toBe(15);
+    test(`forSum ${text}`, () => {
+        expect(forSum(array)).toBe(expectedValue);
+    });
+    
+    test(`whileSum ${text}`, () => {
+        expect(whileSum(array)).toBe(expectedValue);
+    });
+    
+    test(`reduceSum ${text}`, () => {
+        expect(reduceSum(array)).toBe(expectedValue);
+    });
+    
+    test(`recursiveSum ${text}`, () => {
+        expect(recursiveSum(array)).toBe(expectedValue);
+    });
+    
+    test(`tailRecursiveSum ${text}`, () => {
+        expect(tailRecursiveSum(array)).toBe(expectedValue);
+    });
 });
