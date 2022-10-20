@@ -9,3 +9,7 @@ test('forSum of [1, 2, 3, 4, 5] should be 15', () => {
 test('whileSum of [1, 2, 3, 4, 5] should be 15', () => {
     expect(whileSum(array)).toBe(15);
 });
+
+test('reduceSum of [1, 2, 3, 4, 5] should be 15', () => {
+    expect(reduceSum(array)).toBe(15);
+});
