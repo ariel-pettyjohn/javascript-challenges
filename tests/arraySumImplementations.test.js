@@ -1,5 +1,10 @@
 const { 
-    forSum, whileSum, reduceSum, recursiveSum, tailRecursiveSum 
+    forSum, 
+    whileSum, 
+    reduceSum,
+    recursiveReduceSum,
+    recursiveSum, 
+    tailRecursiveSum
 } = require('../arraySumImplementations');
 
 const tests = [
@@ -28,6 +33,10 @@ tests.forEach(([array, expectedValue]) => {
     
     test(`reduceSum ${text}`, () => {
         expect(reduceSum(array)).toBe(expectedValue);
+    });
+
+    test(`recursiveReduceSum ${text}`, () => {
+        expect(recursiveReduceSum(array)).toBe(expectedValue);
     });
     
     test(`recursiveSum ${text}`, () => {
