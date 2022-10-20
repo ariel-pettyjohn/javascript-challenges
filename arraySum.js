@@ -21,4 +21,8 @@ function reduceSum (array) {
     return sum;
 }
 
-module.exports = { forSum, whileSum, reduceSum };
+function recursiveSum (array) {
+    return array.length === 0 ? 0 : array[0] + recursiveSum(array.slice(1));
+}
+
+module.exports = { forSum, whileSum, reduceSum, recursiveSum };
