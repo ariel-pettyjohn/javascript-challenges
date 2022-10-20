@@ -16,4 +16,9 @@ function whileSum (array) {
     return sum;
 }
 
-module.exports = { forSum, whileSum };
+function reduceSum (array) {
+    const sum = array.reduce((currentValue, total) => currentValue + total);
+    return sum;
+}
+
+module.exports = { forSum, whileSum, reduceSum };
