@@ -17,7 +17,7 @@ function whileSum (array) {
 }
 
 function reduceSum (array) {
-    const sum = array.reduce((currentValue, total) => currentValue + total);
+    const sum = array.reduce((currentValue, total) => currentValue + total, 0);
     return sum;
 }
 
