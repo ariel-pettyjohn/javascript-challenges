@@ -3,8 +3,10 @@ const {
 } = require('../arraySumImplementations');
 
 const tests = [
-    [[1, 2, 3, 4,  5], 15],
-    [[2, 4, 6, 8, 10], 30]
+    [[1, 2, 3, 4,  5            ], 15],
+    [[2, 4, 6, 8, 10, 12        ], 42],
+    [[2, 3, 5, 7, 11, 13, 17    ], 58],
+    [[1, 1, 2, 3,  5,  8, 13, 21], 54]
 ];
 
 tests.forEach(([array, expectedValue]) => {
