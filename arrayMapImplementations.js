@@ -16,4 +16,20 @@ function whileMap (array, callback) {
     return _array;
 }
 
-module.exports = { forMap, whileMap };
+function recursiveMap (array, callback) {
+    return array.length === 0
+        ? []
+        : [callback(array[0]), ...recursiveMap(array.slice(1), callback)];
+}
+
+function tailRecursiveMap (array, callback, result = []) {
+    return array.length === 0
+        ? result
+        : tailRecursiveMap(
+            array.slice(1), 
+            callback, 
+            [...result, callback(array[0])]
+        );
+}
+
+module.exports = { forMap, whileMap, recursiveMap, tailRecursiveMap };
