@@ -1,4 +1,6 @@
-const { forMap, whileMap } = require('../arrayMapImplementations');
+const { 
+    forMap, whileMap, recursiveMap, tailRecursiveMap 
+} = require('../arrayMapImplementations');
 
 const tests = [
     [[                                  ], [                                  ]],
@@ -22,5 +24,13 @@ tests.forEach(([array, expectedArray]) => {
 
     test(`whileMap ${text}`, () => {
         expect(whileMap(array, (x) => 2 * x)).toEqual(expectedArray);
+    });
+
+    test(`recursiveMap ${text}`, () => {
+        expect(recursiveMap(array, (x) => 2 * x)).toEqual(expectedArray);
+    });
+
+    test(`tailRecursiveMap ${text}`, () => {
+        expect(tailRecursiveMap(array, (x) => 2 * x)).toEqual(expectedArray);
     });
 });
