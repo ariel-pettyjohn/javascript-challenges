@@ -1,4 +1,6 @@
-const { forSum, whileSum, reduceSum, recursiveSum } = require('../arraySum');
+const { 
+    forSum, whileSum, reduceSum, recursiveSum, tailRecursiveSum 
+} = require('../arraySum');
 
 const array = [1, 2, 3, 4, 5];
 
