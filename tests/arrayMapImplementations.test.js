@@ -1,4 +1,4 @@
-const { forMap } = require('../arrayMapImplementations');
+const { forMap, whileMap } = require('../arrayMapImplementations');
 
 const tests = [
     [[                                  ], [                                  ]],
@@ -18,5 +18,9 @@ tests.forEach(([array, expectedArray]) => {
 
     test(`forMap ${text}`, () => {
         expect(forMap(array, (x) => 2 * x)).toEqual(expectedArray);
+    });
+
+    test(`whileMap ${text}`, () => {
+        expect(whileMap(array, (x) => 2 * x)).toEqual(expectedArray);
     });
 });
