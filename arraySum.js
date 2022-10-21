@@ -1,4 +1,4 @@
-const { recursiveReduce } = require('./arrayReduceImplementations');
+const { recursiveReduce } = require('./arrayReduce');
 
 function forSum (array) {
     let sum = 0;
