@@ -4,4 +4,6 @@ function range (n, offset = 0) {
     return offset ? array.map((key) => key + offset): array;
 }
 
+// TODO: Implement recursive range function
+
 module.exports = { range };
