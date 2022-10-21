@@ -52,7 +52,20 @@ class LinkedList {
         this.size++;
     }
 
+    getAt (index) {
+        // TODO: replace with a recursive implementation
+        let current = this.head;
+        let count   = 0;
+        while (current) {
+            if (count == index) return current.data;
+            count++;
+            current = current.next;
+        }
+        return null;
+    }
+
     removeAt (index) {
+        // TODO: replace with a recursive implementation
         if (index > 0 && index > this.size) return;
         let current = this.head;
         let previous;
