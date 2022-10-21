@@ -30,6 +30,32 @@ class LinkedList {
         }
         this.size++;
     }
+
+    insertAt (data, index) {
+        // TODO: replace with a recursive implementation
+        if (index > 0 && index > this.size) return;
+        if (index === 0) {
+            this.insertFirst(data);
+            return;
+        }
+        const node    = new Node(data);
+        let   count   = 0;
+        let   current = this.head;
+        let   previous;
+        while (count < index) {
+            previous = current;
+            count++;
+            current = current.next;
+        }
+            node.next = current;
+        previous.next = node;
+        this.size++;
+    }
+
+    clearList () {
+        this.head = null;
+        this.size = 0;
+    }
 }
 
 module.exports = { LinkedList };
