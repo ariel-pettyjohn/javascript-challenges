@@ -11,7 +11,7 @@ class SuperArray extends Array {
         return array;
     }
     
-    whileMap (callback: IMapCallback) {
+    whileMap (callback: IMapCallback): any[] {
         let   index = 0;
         const array = new SuperArray(...this);
         while (index < this.length) {
