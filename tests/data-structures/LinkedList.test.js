@@ -1,4 +1,4 @@
-const { LinkedList } = require('../LinkedList');
+const { LinkedList } = require('../../build/LinkedList');
 
 test(`The linkedList should equal the empty LinkedList`, () => {
     const linkedList = new LinkedList();

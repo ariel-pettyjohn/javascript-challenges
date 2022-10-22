@@ -1,4 +1,4 @@
-const { recursiveReduce } = require('../arrayReduce');
+const { recursiveReduce } = require('../../build/arrayReduce');
 
 const sumTests = [
     [[                                  ],          0],

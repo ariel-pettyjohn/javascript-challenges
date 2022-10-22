@@ -1,4 +1,4 @@
-const { zip } = require('../zip');
+const { zip } = require('../../build/zip');
 
 const tests = [
     [

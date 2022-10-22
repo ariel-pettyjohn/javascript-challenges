@@ -1,4 +1,4 @@
-const { range } = require('../range');
+const { range } = require('../../build/range');
 
 const tests = [
     [[0, 0], [                ]],

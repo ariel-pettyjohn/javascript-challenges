@@ -1,6 +1,6 @@
 const { 
     forMap, whileMap, recursiveMap, tailRecursiveMap 
-} = require('../arrayMap');
+} = require('../../build/arrayMap');
 
 const tests = [
     [[                                  ], [                                  ]],
