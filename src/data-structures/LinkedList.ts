@@ -44,24 +44,24 @@ class LinkedList {
             this.insertFirst(data);
             return;
         }
-        const node    = new ListNode(data);
-        let   count   = 0;
-        let   current = this.head;
+        const node    : ListNode        = new ListNode(data);
+        let   count   : number          = 0;
+        let   current : ListNode        = this.head;
         let   previous: ListNode | null = null;
         while (count < index) {
             previous = current;
             count++;
             current = current?.next || null;
         }
-            node.next = current;
+        node.next = current;
         if (previous) previous.next = node;
         this.size++;
     }
 
     getAt (index: number) {
         // TODO: replace with a recursive implementation
-        let current = this.head;
-        let count   = 0;
+        let current: ListNode = this.head;
+        let count  : number   = 0;
         while (current) {
             if (count == index) return current.data;
             count++;
@@ -73,9 +73,9 @@ class LinkedList {
     removeAt (index: number) {
         // TODO: replace with a recursive implementation
         if (index > 0 && index > this.size) return;
-        let current = this.head;
+        let count   : number          = 0;
+        let current : ListNode        = this.head;
         let previous: ListNode | null = null;
-        let count = 0;
         if (index === 0) this.head = current?.next || null;
         else {
             while (count < index) {
