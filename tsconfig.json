@@ -9,6 +9,7 @@
         "./src/algorithms/arrayMap.ts",
         "./src/algorithms/arrayReduce.ts",
         "./src/algorithms/arrayReverse.ts",
+        "./src/algorithms/arraySum.ts",
         "./src/algorithms/factorial.ts",
         "./src/algorithms/helloWorld.ts",
         "./src/algorithms/range.ts",

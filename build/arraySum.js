@@ -1,48 +1,41 @@
-const { recursiveReduce } = require('./arrayReduce');
-
-function forSum (array) {
+const { recursiveReduce: reduce } = require('./arrayReduce');
+function forSum(array) {
     let sum = 0;
     for (let i = 0; i < array.length; i++) {
         sum += array[i];
     }
     return sum;
 }
-
-function whileSum (array) {
-    let index = 0; 
-    let sum   = 0;
+function whileSum(array) {
+    let index = 0;
+    let sum = 0;
     while (index < array.length) {
-        sum += array[index]; 
+        sum += array[index];
         index++;
     }
     return sum;
 }
-
-function reduceSum (array) {
+function reduceSum(array) {
     const sum = array.reduce((x, y) => x + y, 0);
     return sum;
 }
-
-function recursiveReduceSum (array) {
-    const sum = recursiveReduce(array, (x, y) => x + y, 0);
+function recursiveReduceSum(array) {
+    const sum = reduce(array, (x, y) => x + y, 0);
     return sum;
 }
-
-function recursiveSum (array) {
+function recursiveSum(array) {
     return array.length === 0 ? 0 : array[0] + recursiveSum(array.slice(1));
 }
-
-function tailRecursiveSum (array, sum = 0) {
+function tailRecursiveSum(array, sum = 0) {
     return array.length === 0
         ? sum
         : tailRecursiveSum(array.slice(1), array[0] + sum);
 }
-
-module.exports = { 
-    forSum, 
-    whileSum, 
-    reduceSum, 
-    recursiveReduceSum, 
-    recursiveSum, 
+module.exports = {
+    forSum,
+    whileSum,
+    reduceSum,
+    recursiveReduceSum,
+    recursiveSum,
     tailRecursiveSum
 };
