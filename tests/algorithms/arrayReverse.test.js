@@ -1,4 +1,4 @@
-const { reverse, tailRecursiveArrayReverse } = require('../../build/arrayReverse');
+const { reverse, tailRecursiveArrayReverse } = require('../../build/algorithms/arrayReverse');
 
 const tests = [
     [[                                  ], [                                  ]],

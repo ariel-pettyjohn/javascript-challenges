@@ -5,7 +5,7 @@ const {
     recursiveReduceSum,
     recursiveSum, 
     tailRecursiveSum
-} = require('../../build/arraySum');
+} = require('../../build/algorithms/arraySum');
 
 const tests = [
     [[                                  ],  0],

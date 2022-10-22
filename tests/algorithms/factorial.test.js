@@ -1,4 +1,4 @@
-const { factorial, tailRecursiveFactorial } = require('../../build/factorial');
+const { factorial, tailRecursiveFactorial } = require('../../build/algorithms/factorial');
 
 const tests = [
     [0,      1],

@@ -1,4 +1,4 @@
-const { stringReverse } = require('../../build/stringReverse');
+const { stringReverse } = require('../../build/algorithms/stringReverse');
 
 const tests = [
     [''       , ''       ],
