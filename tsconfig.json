@@ -12,6 +12,7 @@
         "./src/algorithms/arraySum.ts",
         "./src/algorithms/factorial.ts",
         "./src/algorithms/helloWorld.ts",
+        "./src/algorithms/mergeSort.ts",
         "./src/algorithms/range.ts",
         "./src/algorithms/stringReverse.ts",
         "./src/algorithms/zip.ts"
