@@ -30,7 +30,7 @@ function tailRecursiveMap (
     array   : any[], 
     callback: IMapCallback, 
     result  : any[] = []
-) {
+): any[] {
     return array.length === 0
         ? result
         : tailRecursiveMap(
