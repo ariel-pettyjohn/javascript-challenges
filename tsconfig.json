@@ -6,6 +6,7 @@
         "outDir": "build"
     },
     "files": [
+        "./src/algorithms/arrayMap.ts",
         "./src/algorithms/arrayReduce.ts",
         "./src/algorithms/arrayReverse.ts",
         "./src/algorithms/factorial.ts",
