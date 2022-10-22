@@ -6,6 +6,7 @@
         "outDir": "build"
     },
     "files": [
-        "./src/algorithms/helloWorld.ts"
+        "./src/algorithms/helloWorld.ts",
+        "./src/algorithms/zip.ts"
     ]
 }
