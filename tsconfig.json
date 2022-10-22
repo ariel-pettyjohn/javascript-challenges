@@ -2,11 +2,12 @@
     "compilerOptions": {
         "allowJs": true,
         "module": "commonjs",
-        "target": "ES5",
+        "target": "ES6",
         "outDir": "build"
     },
     "files": [
         "./src/algorithms/helloWorld.ts",
+        "./src/algorithms/range.ts",
         "./src/algorithms/zip.ts"
     ]
 }

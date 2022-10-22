@@ -1,5 +1,5 @@
 function helloWorld() {
-    var message = 'Hello World!';
+    const message = 'Hello World!';
     return message;
 }
-module.exports = { helloWorld: helloWorld };
+module.exports = { helloWorld };
