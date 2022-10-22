@@ -1,4 +1,4 @@
-const SuperSet = require('../../build/SuperSet');
+const SuperSet = require('../../build/data-structures/SuperSet');
 
 test(`superSetA should equal superSetB`, () => {
     const superSetA = new SuperSet([1, 2, 3, 3, 4]);
