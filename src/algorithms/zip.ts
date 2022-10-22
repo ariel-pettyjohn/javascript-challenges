@@ -1,4 +1,4 @@
-function zip (...arrays: any[][]) {
+function zip (...arrays: any[][]): any[][] {
     const arrayLengths   = arrays.map((array) => array.length);
     const minArrayLength = Math.min(...arrayLengths);
     const zippedArrays: any[][] = [];
