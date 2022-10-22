@@ -1,4 +1,4 @@
-const { reverse, tailRecursiveReverse } = require('../../build/arrayReverse');
+const { reverse, tailRecursiveArrayReverse } = require('../../build/arrayReverse');
 
 const tests = [
     [[                                  ], [                                  ]],
@@ -21,6 +21,6 @@ tests.forEach(([array, expectedArray]) => {
     });
 
     test(`tailRecursiveReverse ${text}`, () => {
-        expect(tailRecursiveReverse(array)).toEqual(expectedArray);
+        expect(tailRecursiveArrayReverse(array)).toEqual(expectedArray);
     });
 });

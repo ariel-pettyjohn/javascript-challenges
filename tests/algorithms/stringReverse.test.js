@@ -1,4 +1,4 @@
-const { reverse } = require('../../build/stringReverse');
+const { stringReverse } = require('../../build/stringReverse');
 
 const tests = [
     [''       , ''       ],
@@ -11,7 +11,7 @@ const tests = [
 tests.forEach(([string, expectedString]) => {
     const text = `of ${string} should equal ${expectedString}`;
 
-    test(`reverse ${text}`, () => {
-        expect(reverse(string)).toEqual(expectedString);
+    test(`stringReverse ${text}`, () => {
+        expect(stringReverse(string)).toEqual(expectedString);
     });
 });
