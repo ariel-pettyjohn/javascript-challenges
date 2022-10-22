@@ -1,5 +1,9 @@
+interface IMapCallback {
+    (x: any): any
+};
+
 class SuperArray extends Array {
-    forMap (callback) {
+    forMap (callback: IMapCallback): any[] {
         const array = new SuperArray(...this);
         for (let i = 0; i < this.length; i++) {
             array[i] = callback(this[i]);
@@ -7,7 +11,7 @@ class SuperArray extends Array {
         return array;
     }
     
-    whileMap (callback) {
+    whileMap (callback: IMapCallback) {
         let   index = 0;
         const array = new SuperArray(...this);
         while (index < this.length) {
