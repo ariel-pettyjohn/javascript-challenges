@@ -6,6 +6,7 @@
         "outDir": "build"
     },
     "files": [
+        "./src/algorithms/arrayReverse.ts",
         "./src/algorithms/factorial.ts",
         "./src/algorithms/helloWorld.ts",
         "./src/algorithms/range.ts",
