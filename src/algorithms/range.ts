@@ -1,6 +1,5 @@
 function range (n: number, offset: number = 0): number[] {
-    const array = [...Array(n).keys()];
-
+    const array: number[] = [...Array(n).keys()];
     return offset ? array.map((key) => key + offset): array;
 }
 

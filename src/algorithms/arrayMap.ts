@@ -3,7 +3,7 @@ interface IMapCallback {
 };
 
 function forMap (array: any[], callback: IMapCallback): any[] {
-    const _array = [...array];
+    const _array: any[] = [...array];
     for (let i = 0; i < array.length; i++) {
         _array[i] = callback(array[i]);
     }
@@ -11,8 +11,8 @@ function forMap (array: any[], callback: IMapCallback): any[] {
 }
 
 function whileMap (array: any[], callback: IMapCallback): any[] {
-    let    index = 0;
-    const _array = [...array];
+    let    index: number = 0;
+    const _array: any[]  = [...array];
     while (index < array.length) {
         _array[index] = callback(array[index]); 
         index++;

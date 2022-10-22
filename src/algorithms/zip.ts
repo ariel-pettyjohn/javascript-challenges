@@ -1,7 +1,7 @@
 function zip (...arrays: any[][]): any[][] {
-    const arrayLengths   = arrays.map((array) => array.length);
-    const minArrayLength = Math.min(...arrayLengths);
-    const zippedArrays: any[][] = [];
+    const arrayLengths  :number[] = arrays.map((array) => array.length);
+    const minArrayLength:number   = Math.min(...arrayLengths);
+    const zippedArrays  : any[][] = [];
     for (let i = 0; i < minArrayLength; i++) {
         const zippedArray: any[] = [];
         arrays.forEach((array) => zippedArray.push(array[i]));

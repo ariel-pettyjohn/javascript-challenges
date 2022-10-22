@@ -1,14 +1,14 @@
 interface IMergeSortCallback {
-    (x: any, y: any): boolean
+    (x: any, y: any): boolean;
 }
 
-function mergeSort (array: any[], callback: IMergeSortCallback) {
+function mergeSort (array: any[], callback: IMergeSortCallback): any[] {
     function merge (
         left    : any[], 
         right   : any[], 
         callback: IMergeSortCallback, 
         array   : any[] = []
-    ) {
+    ): any[] {
         if (!left.length || !right.length) {
             return [...array, ...left, ...right];
         } else if (callback(left[0], right[0])) {

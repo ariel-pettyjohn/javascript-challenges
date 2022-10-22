@@ -1,25 +1,15 @@
-interface IListNode {
+class ListNode {   
     data: any;
-    next: IListNode | null;
-}
+    next: ListNode | null
 
-class ListNode implements IListNode {   
-    data: any;
-    next: IListNode | null
-
-    constructor (data: any, next: IListNode | null = null) {
+    constructor (data: any, next: ListNode | null = null) {
         this.data = data;
         this.next = next;
     }
 }
 
-interface ILinkedList {
-    head: IListNode | null;
-    size: number;
-}
-
 class LinkedList {
-    head: IListNode | null;
+    head: ListNode | null;
     size: number;
 
     constructor () {
@@ -35,7 +25,7 @@ class LinkedList {
     insertLast (data: any) {
         // TODO: replace with a recursive implementation
         let node = new ListNode(data);
-        let current;
+        let current: ListNode | null;
         if (!this.head) this.head = node;
         else {
             current = this.head;
@@ -57,14 +47,14 @@ class LinkedList {
         const node    = new ListNode(data);
         let   count   = 0;
         let   current = this.head;
-        let   previous;
+        let   previous: ListNode | null = null;
         while (count < index) {
             previous = current;
             count++;
             current = current?.next || null;
         }
             node.next = current;
-        previous.next = node;
+        if (previous) previous.next = node;
         this.size++;
     }
 
@@ -84,7 +74,7 @@ class LinkedList {
         // TODO: replace with a recursive implementation
         if (index > 0 && index > this.size) return;
         let current = this.head;
-        let previous;
+        let previous: ListNode | null = null;
         let count = 0;
         if (index === 0) this.head = current?.next || null;
         else {
@@ -93,7 +83,7 @@ class LinkedList {
                 previous = current;
                 current  = current?.next || null;
             }
-            previous.next = current?.next || null;
+            if (previous) previous.next = current?.next || null;
         }
         this.size--;
     }

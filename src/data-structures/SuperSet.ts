@@ -1,8 +1,4 @@
-interface ISuperSet {
-    elements: any[]
-}
-
-class SuperSet implements ISuperSet {
+class SuperSet {
     elements: any[];
 
     constructor (elements: any[]) {
@@ -12,7 +8,7 @@ class SuperSet implements ISuperSet {
     static filterDuplicates (array) {
         // TODO: replace with a recursive implementation
         const filteredArray: any[] = [];
-        array.forEach((element) => {
+        array.forEach((element: any) => {
             if (!filteredArray.includes(element)) {
                 filteredArray.push(element);
             }

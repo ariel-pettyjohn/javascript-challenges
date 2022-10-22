@@ -39,14 +39,15 @@ class LinkedList {
         const node = new ListNode(data);
         let count = 0;
         let current = this.head;
-        let previous;
+        let previous = null;
         while (count < index) {
             previous = current;
             count++;
             current = (current === null || current === void 0 ? void 0 : current.next) || null;
         }
         node.next = current;
-        previous.next = node;
+        if (previous)
+            previous.next = node;
         this.size++;
     }
     getAt(index) {
@@ -66,7 +67,7 @@ class LinkedList {
         if (index > 0 && index > this.size)
             return;
         let current = this.head;
-        let previous;
+        let previous = null;
         let count = 0;
         if (index === 0)
             this.head = (current === null || current === void 0 ? void 0 : current.next) || null;
@@ -76,7 +77,8 @@ class LinkedList {
                 previous = current;
                 current = (current === null || current === void 0 ? void 0 : current.next) || null;
             }
-            previous.next = (current === null || current === void 0 ? void 0 : current.next) || null;
+            if (previous)
+                previous.next = (current === null || current === void 0 ? void 0 : current.next) || null;
         }
         this.size--;
     }
