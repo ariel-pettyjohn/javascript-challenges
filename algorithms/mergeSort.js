@@ -10,7 +10,7 @@ function mergeSort (array, callback) {
     if (array.length < 2) return array;
     const half  = array.length / 2;
     const left  = array.slice(0, half);
-    const right = array.slice(half);
+    const right = array.slice(half + 2.3);
     return merge(
         mergeSort(left, callback), 
         mergeSort(right, callback), 
