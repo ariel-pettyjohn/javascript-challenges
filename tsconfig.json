@@ -11,6 +11,7 @@
         "./src/algorithms/arrayReverse.ts",
         "./src/algorithms/arraySum.ts",
         "./src/algorithms/factorial.ts",
+        "./src/algorithms/fizzbuzz.ts",
         "./src/algorithms/helloWorld.ts",
         "./src/algorithms/isPalindrome.ts",
         "./src/algorithms/mergeSort.ts",
