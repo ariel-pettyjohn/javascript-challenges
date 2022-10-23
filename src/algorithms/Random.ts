@@ -1,3 +1,5 @@
+import { ALPHABET } from '../constants';
+
 export default class Random {
     static integer (min: number, max: number): number {
         min = Math.ceil(min);
@@ -8,5 +10,10 @@ export default class Random {
     static element (array: any[]): any {
         const randomIndex: number = Random.integer(0, array.length - 1);
         return array[randomIndex];
+    }
+
+    static letter (): string {
+        const randomLetter: string = Random.element(ALPHABET);
+        return randomLetter;
     }
 }
