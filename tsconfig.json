@@ -13,7 +13,6 @@
     },
     "files": [
         "./src/algorithms/areAnagrams.ts",
-        "./src/algorithms/arraySum.ts",
         "./src/algorithms/factorial.ts",
         "./src/algorithms/fizzbuzz.ts",
         "./src/algorithms/getCharacterFrequencies.ts",

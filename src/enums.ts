@@ -3,4 +3,6 @@ export enum Implementation {
     while         = 'while',
     recursive     = 'recursive',
     tailRecursive = 'tailRecursive',
+    reduce        = 'reduce',
+    superReduce   = 'superReduce'
 }
