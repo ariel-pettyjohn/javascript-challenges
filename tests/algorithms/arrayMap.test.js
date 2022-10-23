@@ -1,6 +1,11 @@
-const { 
-    forMap, whileMap, recursiveMap, tailRecursiveMap 
-} = require('../../build/algorithms/arrayMap');
+const { map } = require('../../build/algorithms/arrayMap');
+
+const Implementation = {
+    for          : 'for',
+    while        : 'while',
+    recursive    : 'recursive',
+    tailRecursive: 'tailRecursive',
+}
 
 const tests = [
     [[                                  ], [                                  ]],
@@ -19,18 +24,18 @@ tests.forEach(([array, expectedArray]) => {
     const text = `of double function of ${array} should be ${expectedArray}`;
 
     test(`forMap ${text}`, () => {
-        expect(forMap(array, (x) => 2 * x)).toEqual(expectedArray);
+        expect(map(array, (x) => 2 * x, Implementation.for)).toEqual(expectedArray);
     });
 
     test(`whileMap ${text}`, () => {
-        expect(whileMap(array, (x) => 2 * x)).toEqual(expectedArray);
+        expect(map(array, (x) => 2 * x, Implementation.while)).toEqual(expectedArray);
     });
 
     test(`recursiveMap ${text}`, () => {
-        expect(recursiveMap(array, (x) => 2 * x)).toEqual(expectedArray);
+        expect(map(array, (x) => 2 * x, Implementation.recursive)).toEqual(expectedArray);
     });
 
     test(`tailRecursiveMap ${text}`, () => {
-        expect(tailRecursiveMap(array, (x) => 2 * x)).toEqual(expectedArray);
+        expect(map(array, (x) => 2 * x, Implementation.tailRecursive)).toEqual(expectedArray);
     });
 });

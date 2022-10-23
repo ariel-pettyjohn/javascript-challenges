@@ -1,4 +1,11 @@
 ;
+var Implementation;
+(function (Implementation) {
+    Implementation["for"] = "for";
+    Implementation["while"] = "while";
+    Implementation["recursive"] = "recursive";
+    Implementation["tailRecursive"] = "tailRecursive";
+})(Implementation || (Implementation = {}));
 function forMap(array, callback) {
     const _array = [...array];
     for (let i = 0; i < array.length; i++) {
@@ -25,4 +32,16 @@ function tailRecursiveMap(array, callback, result = []) {
         ? result
         : tailRecursiveMap(array.slice(1), callback, [...result, callback(array[0])]);
 }
-module.exports = { forMap, whileMap, recursiveMap, tailRecursiveMap };
+function map(array, callback, implementation = Implementation.tailRecursive) {
+    switch (implementation) {
+        case Implementation.for:
+            return forMap(array, callback);
+        case Implementation.while:
+            return whileMap(array, callback);
+        case Implementation.recursive:
+            return recursiveMap(array, callback);
+        default:
+            return tailRecursiveMap(array, callback);
+    }
+}
+module.exports = { map };

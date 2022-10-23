@@ -2,6 +2,13 @@ interface IMapCallback {
     (x: any): any
 };
 
+enum Implementation {
+    for           = 'for',
+    while         = 'while',
+    recursive     = 'recursive',
+    tailRecursive = 'tailRecursive',
+}
+
 function forMap (array: any[], callback: IMapCallback): any[] {
     const _array: any[] = [...array];
     for (let i = 0; i < array.length; i++) {
@@ -40,4 +47,21 @@ function tailRecursiveMap (
         );
 }
 
-module.exports = { forMap, whileMap, recursiveMap, tailRecursiveMap };
+function map (
+    array         : any[],
+    callback      : IMapCallback,
+    implementation: Implementation = Implementation.tailRecursive
+): any[] {
+    switch (implementation) {
+        case Implementation.for:
+            return forMap(array, callback);
+        case Implementation.while:
+            return whileMap(array, callback);
+        case Implementation.recursive:
+            return recursiveMap(array, callback);
+        default:
+            return tailRecursiveMap(array, callback);
+    }
+}
+
+module.exports = { map };
