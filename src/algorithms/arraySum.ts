@@ -1,4 +1,4 @@
-import arrayReduce from './arrayReduce';
+import SuperArray from "../data-structures/SuperArray";
 
 export function forSum (array: number[]): number {
     let sum: number = 0;
@@ -24,7 +24,7 @@ export function reduceSum (array: number[]): number {
 }
 
 export function recursiveReduceSum (array: number[]): number {
-    const sum: number = arrayReduce(array, (x, y) => x + y, 0);
+    const sum: number = new SuperArray(...array).superReduce((x, y) => x + y, 0);
     return sum;
 }
 
