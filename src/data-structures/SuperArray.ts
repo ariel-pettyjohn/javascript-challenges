@@ -2,7 +2,7 @@ import { IMapCallback, IReduceCallback } from '../interfaces';
 
 import { Implementation } from '../enums';
 
-export default class SuperArray extends Array {
+export default class SuperArray extends Array<any> {
     private static _forMap (array: any[], callback: IMapCallback): any[] {
         const _array: any[] = [...array];
         for (let i = 0; i < array.length; i++) {
@@ -58,6 +58,26 @@ export default class SuperArray extends Array {
         );
     }
 
+    private static _recursiveReverse (array: any[]): any[] {
+        if (array.length <= 1) return array;
+        const head: any   = array[array.length - 1];
+        const tail: any[] = array.slice(0, -1);
+        return [head, ...SuperArray._recursiveReverse(tail)];
+    }
+    
+    private static _tailRecursiveReverse (
+        array : any[], 
+        result: any[] = []
+    ): any[] {
+        if (array.length <=  1) return array;
+        const head: any   = array[array.length - 1];
+        const tail: any[] = array.slice(0, -1);
+        return [
+            head, 
+            ...SuperArray._tailRecursiveReverse(tail, [head, ...result])
+        ];
+    }
+
     superMap (
         callback      : IMapCallback,
         implementation: Implementation = Implementation.tailRecursive
@@ -79,5 +99,16 @@ export default class SuperArray extends Array {
         initialValue: any
     ): any {
         return SuperArray._tailRecursiveReduce(this, callback, initialValue);
+    }
+
+    superReverse (
+        implementation: Implementation = Implementation.tailRecursive
+    ): any {
+        switch (implementation) {
+            case Implementation.recursive:
+                return SuperArray._recursiveReverse(this);
+            default:
+                return SuperArray._tailRecursiveReverse(this);
+        }
     }
 }

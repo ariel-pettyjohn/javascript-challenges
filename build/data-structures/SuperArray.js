@@ -36,6 +36,23 @@ export default class SuperArray extends Array {
             return array[0];
         return SuperArray._tailRecursiveReduce([callback(array[0], array[1]), ...array.slice(2)], callback, initialValue);
     }
+    static _recursiveReverse(array) {
+        if (array.length <= 1)
+            return array;
+        const head = array[array.length - 1];
+        const tail = array.slice(0, -1);
+        return [head, ...SuperArray._recursiveReverse(tail)];
+    }
+    static _tailRecursiveReverse(array, result = []) {
+        if (array.length <= 1)
+            return array;
+        const head = array[array.length - 1];
+        const tail = array.slice(0, -1);
+        return [
+            head,
+            ...SuperArray._tailRecursiveReverse(tail, [head, ...result])
+        ];
+    }
     superMap(callback, implementation = Implementation.tailRecursive) {
         switch (implementation) {
             case Implementation.for:
@@ -50,5 +67,13 @@ export default class SuperArray extends Array {
     }
     superReduce(callback, initialValue) {
         return SuperArray._tailRecursiveReduce(this, callback, initialValue);
+    }
+    superReverse(implementation = Implementation.tailRecursive) {
+        switch (implementation) {
+            case Implementation.recursive:
+                return SuperArray._recursiveReverse(this);
+            default:
+                return SuperArray._tailRecursiveReverse(this);
+        }
     }
 }
