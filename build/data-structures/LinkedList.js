@@ -66,9 +66,9 @@ class LinkedList {
         // TODO: replace with a recursive implementation
         if (index > 0 && index > this.size)
             return;
+        let count = 0;
         let current = this.head;
         let previous = null;
-        let count = 0;
         if (index === 0)
             this.head = (current === null || current === void 0 ? void 0 : current.next) || null;
         else {
