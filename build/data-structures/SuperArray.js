@@ -58,7 +58,7 @@ export default class SuperArray extends Array {
             return [offset];
         const array = [...Array(n).keys()];
         return offset
-            ? new SuperArray(...array.map((key) => key + offset))
+            ? new SuperArray(...array).superMap((key) => key + offset)
             : new SuperArray(...array);
     }
     superMap(callback, implementation = Implementation.tailRecursive) {

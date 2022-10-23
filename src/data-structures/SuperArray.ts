@@ -82,7 +82,7 @@ export default class SuperArray extends Array<any> {
         if (n === 1) return [offset];
         const array: number[] = [...Array(n).keys()];
         return offset 
-            ? new SuperArray(...array.map((key) => key + offset))
+            ? new SuperArray(...array).superMap((key) => key + offset)
             : new SuperArray(...array);
     }
 
