@@ -8,7 +8,7 @@ class ListNode {
     }
 }
 
-class LinkedList {
+export default class LinkedList {
     head: ListNode | null;
     size: number;
 
@@ -46,7 +46,7 @@ class LinkedList {
         }
         const node    : ListNode        = new ListNode(data);
         let   count   : number          = 0;
-        let   current : ListNode        = this.head;
+        let   current : ListNode | null = this.head;
         let   previous: ListNode | null = null;
         while (count < index) {
             previous = current;
@@ -60,8 +60,8 @@ class LinkedList {
 
     getAt (index: number) {
         // TODO: replace with a recursive implementation
-        let current: ListNode = this.head;
-        let count  : number   = 0;
+        let current: ListNode | null = this.head;
+        let count  : number          = 0;
         while (current) {
             if (count == index) return current.data;
             count++;
@@ -74,7 +74,7 @@ class LinkedList {
         // TODO: replace with a recursive implementation
         if (index > 0 && index > this.size) return;
         let count   : number          = 0;
-        let current : ListNode        = this.head;
+        let current : ListNode | null = this.head;
         let previous: ListNode | null = null;
         if (index === 0) this.head = current?.next || null;
         else {
@@ -93,5 +93,3 @@ class LinkedList {
         this.size = 0;
     }
 }
-
-module.exports = { LinkedList };

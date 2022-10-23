@@ -1,11 +1,11 @@
-const { 
+import { 
     forSum, 
     whileSum, 
     reduceSum,
     recursiveReduceSum,
     recursiveSum, 
     tailRecursiveSum
-} = require('../../build/algorithms/arraySum');
+} from '../../build/algorithms/arraySum';
 
 const tests = [
     [[                                  ],  0],

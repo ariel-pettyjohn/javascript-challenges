@@ -1,4 +1,4 @@
-const { fizzbuzz } = require('../../build/algorithms/fizzbuzz');
+import fizzbuzz from '../../build/algorithms/fizzbuzz';
 
 const tests = [
     [15, [

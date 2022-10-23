@@ -47,7 +47,7 @@ function _tailRecursiveMap (
         );
 }
 
-function map (
+export default function map (
     array         : any[],
     callback      : IMapCallback,
     implementation: Implementation = Implementation.tailRecursive
@@ -63,5 +63,3 @@ function map (
             return _tailRecursiveMap(array, callback);
     }
 }
-
-module.exports = { map };

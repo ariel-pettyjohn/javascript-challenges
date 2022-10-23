@@ -1,4 +1,4 @@
-const { range } = require('../../build/algorithms/range');
+import range from '../../build/algorithms/range';
 
 const tests = [
     [[0, 0], [                ]],

@@ -1,4 +1,4 @@
-class SuperSet {
+export default class SuperSet {
     constructor(elements) {
         this.elements = SuperSet.filterDuplicates(elements);
     }
@@ -13,4 +13,3 @@ class SuperSet {
         return filteredArray;
     }
 }
-module.exports = SuperSet;

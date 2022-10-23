@@ -1,4 +1,4 @@
-const { mergeSort } = require('../../build/algorithms/mergeSort');
+import mergeSort from '../../build/algorithms/mergeSort';
 
 const ascendingTests = [
     [[                                                ], [                                                ]],

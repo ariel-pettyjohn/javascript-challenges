@@ -8,4 +8,4 @@ function getCharacterFrequencies(string) {
     }
     return characterFrequencies;
 }
-module.exports = { getCharacterFrequencies };
+export default getCharacterFrequencies;

@@ -1,4 +1,4 @@
-const Random = require('../../build/algorithms/Random');
+import Random from '../../build/algorithms/Random';
 
 const tests = [
     [1, 2, 3, 4, 5],

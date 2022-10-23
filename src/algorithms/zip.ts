@@ -1,4 +1,4 @@
-function zip (...arrays: any[][]): any[][] {
+export default function zip (...arrays: any[][]): any[][] {
     const arrayLengths  :number[] = arrays.map((array) => array.length);
     const minArrayLength:number   = Math.min(...arrayLengths);
     const zippedArrays  : any[][] = [];
@@ -9,5 +9,3 @@ function zip (...arrays: any[][]): any[][] {
     }
     return zippedArrays;
 }
-
-module.exports = { zip };

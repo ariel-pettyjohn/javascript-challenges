@@ -1,4 +1,4 @@
-class Random {
+export default class Random {
     static integer(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -9,4 +9,3 @@ class Random {
         return array[randomIndex];
     }
 }
-module.exports = Random;

@@ -1,11 +1,18 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        "module": "commonjs",
-        "target": "ES6",
-        "outDir": "build"
+        "outDir": "build",
+        "target": "es2020",
+        "lib": [
+          "es2020", "DOM"
+        ],
+        "module": "ES2020",
+        "moduleResolution": "Node",
+        "strict": true,
+        "allowSyntheticDefaultImports": true
     },
     "files": [
+        "./src/algorithms/areAnagrams.ts",
         "./src/algorithms/arrayMap.ts",
         "./src/algorithms/arrayReduce.ts",
         "./src/algorithms/arrayReverse.ts",

@@ -1,4 +1,4 @@
-const { isPalindrome } = require('../../build/algorithms/isPalindrome');
+import isPalindrome from '../../build/algorithms/isPalindrome';
 
 const tests = [
     [''       , true],

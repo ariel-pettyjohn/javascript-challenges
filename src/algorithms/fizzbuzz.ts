@@ -1,7 +1,7 @@
-const { range: integerRange } = require('./range');
+import range from './range';
 
-function fizzbuzz (n: number) {
-    return integerRange(n, 1).map((i: number) => {
+export default function fizzbuzz (n: number) {
+    return range(n, 1).map((i: number) => {
         if (i % 15 === 0) {
             return 'fizzbuzz';
         } else if (i % 3 === 0) {
@@ -12,5 +12,3 @@ function fizzbuzz (n: number) {
         return i;
     });
 }
-
-module.exports = { fizzbuzz };

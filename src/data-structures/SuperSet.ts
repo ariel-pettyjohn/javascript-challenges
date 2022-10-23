@@ -1,11 +1,11 @@
-class SuperSet {
+export default class SuperSet {
     elements: any[];
 
     constructor (elements: any[]) {
         this.elements = SuperSet.filterDuplicates(elements);
     }
 
-    static filterDuplicates (array) {
+    static filterDuplicates (array: any[]) {
         // TODO: replace with a recursive implementation
         const filteredArray: any[] = [];
         array.forEach((element: any) => {
@@ -16,5 +16,3 @@ class SuperSet {
         return filteredArray;
     }
 }
-
-module.exports = SuperSet;

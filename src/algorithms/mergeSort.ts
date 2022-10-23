@@ -27,4 +27,4 @@ function mergeSort (array: any[], callback: IMergeSortCallback): any[] {
     );
 }
 
-module.exports = { mergeSort };
+export default mergeSort;

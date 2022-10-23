@@ -32,7 +32,7 @@ function _tailRecursiveMap(array, callback, result = []) {
         ? result
         : _tailRecursiveMap(array.slice(1), callback, [...result, callback(array[0])]);
 }
-function map(array, callback, implementation = Implementation.tailRecursive) {
+export default function map(array, callback, implementation = Implementation.tailRecursive) {
     switch (implementation) {
         case Implementation.for:
             return _forMap(array, callback);
@@ -44,4 +44,3 @@ function map(array, callback, implementation = Implementation.tailRecursive) {
             return _tailRecursiveMap(array, callback);
     }
 }
-module.exports = { map };

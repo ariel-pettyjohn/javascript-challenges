@@ -1,6 +1,4 @@
-const { 
-    getCharacterFrequencies: charFreqs 
-} = require('../../build/algorithms/getCharacterFrequencies');
+import getCharacterFrequencies from '../../build/algorithms/getCharacterFrequencies';
 
 const tests = [
     ['foo', { f: 1, o: 2 }],
@@ -12,6 +10,6 @@ tests.forEach(([string, frequencies]) => {
     const text = `of ${string} should equal ${frequencies}`;
 
     test(`getCharacterFrequencies ${text}`, () => {
-        expect(charFreqs(string)).toEqual(frequencies);
+        expect(getCharacterFrequencies(string)).toEqual(frequencies);
     });
 });

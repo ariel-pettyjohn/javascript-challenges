@@ -1,6 +1,4 @@
-interface ICharacterFrequencies {
-    [index: string]: number
-}
+import ICharacterFrequencies from '../types/ICharacterFrequencies';
 
 function getCharacterFrequencies (string: string): ICharacterFrequencies {
     const _string             : string                = string.toLowerCase();
@@ -13,5 +11,5 @@ function getCharacterFrequencies (string: string): ICharacterFrequencies {
     return characterFrequencies;
 }
 
-module.exports = { getCharacterFrequencies };
+export default getCharacterFrequencies;
 

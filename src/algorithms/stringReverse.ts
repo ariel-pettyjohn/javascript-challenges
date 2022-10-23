@@ -1,10 +1,8 @@
-const { tailRecursiveArrayReverse: arrayReverse } = require('./arrayReverse');
+import { tailRecursiveArrayReverse } from "./arrayReverse";
 
-function stringReverse (string: string): string {
+export default function stringReverse (string: string): string {
     const stringArray        : string[] = string.split('');
-    const reversedStringArray: string[] = arrayReverse(stringArray);
+    const reversedStringArray: string[] = tailRecursiveArrayReverse(stringArray);
     const reversedString     : string   = reversedStringArray.join('');
     return reversedString;
 }
-
-module.exports = { stringReverse };

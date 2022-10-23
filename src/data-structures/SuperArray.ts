@@ -9,7 +9,7 @@ enum Implementation {
     tailRecursive = 'tailRecursive',
 }
 
-class SuperArray extends Array {
+export default class SuperArray extends Array {
     private _forMap (callback: IMapCallback): any[] {
         const array: SuperArray = new SuperArray(...this);
         for (let i = 0; i < this.length; i++) {

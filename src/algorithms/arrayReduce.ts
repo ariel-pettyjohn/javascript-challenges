@@ -2,7 +2,7 @@ interface ReduceCallback {
     (x: any, y: any): boolean
 }
 
-function recursiveReduce (
+export default function recursiveReduce (
     array       : any[], 
     callback    : ReduceCallback, 
     initialValue: any
@@ -15,5 +15,3 @@ function recursiveReduce (
         initialValue
     );
 }
-
-module.exports = { recursiveReduce };

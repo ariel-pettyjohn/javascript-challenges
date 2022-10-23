@@ -4,7 +4,7 @@ class ListNode {
         this.next = next;
     }
 }
-class LinkedList {
+export default class LinkedList {
     constructor() {
         this.head = null;
         this.size = 0;
@@ -43,7 +43,7 @@ class LinkedList {
         while (count < index) {
             previous = current;
             count++;
-            current = (current === null || current === void 0 ? void 0 : current.next) || null;
+            current = current?.next || null;
         }
         node.next = current;
         if (previous)
@@ -70,15 +70,15 @@ class LinkedList {
         let current = this.head;
         let previous = null;
         if (index === 0)
-            this.head = (current === null || current === void 0 ? void 0 : current.next) || null;
+            this.head = current?.next || null;
         else {
             while (count < index) {
                 count++;
                 previous = current;
-                current = (current === null || current === void 0 ? void 0 : current.next) || null;
+                current = current?.next || null;
             }
             if (previous)
-                previous.next = (current === null || current === void 0 ? void 0 : current.next) || null;
+                previous.next = current?.next || null;
         }
         this.size--;
     }
@@ -87,4 +87,3 @@ class LinkedList {
         this.size = 0;
     }
 }
-module.exports = { LinkedList };

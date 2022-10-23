@@ -1,4 +1,4 @@
-const { map } = require('../../build/algorithms/arrayMap');
+import map from '../../build/algorithms/arrayMap';
 
 const Implementation = {
     for          : 'for',

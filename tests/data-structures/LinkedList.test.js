@@ -1,4 +1,4 @@
-const { LinkedList } = require('../../build/data-structures/LinkedList');
+import LinkedList from '../../build/data-structures/LinkedList';
 
 test(`The linkedList should equal the empty LinkedList`, () => {
     const linkedList = new LinkedList();

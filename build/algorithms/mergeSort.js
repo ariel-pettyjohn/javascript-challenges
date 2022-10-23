@@ -15,4 +15,4 @@ function mergeSort(array, callback) {
     const right = array.slice(half);
     return merge(mergeSort(left, callback), mergeSort(right, callback), callback);
 }
-module.exports = { mergeSort };
+export default mergeSort;

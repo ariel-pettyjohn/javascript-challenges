@@ -1,6 +1,5 @@
-const { stringReverse: reverseString } = require('./stringReverse');
-function isPalindrome(string) {
-    const reversedString = reverseString(string);
+import stringReverse from './stringReverse';
+export default function isPalindrome(string) {
+    const reversedString = stringReverse(string);
     return string === reversedString;
 }
-module.exports = { isPalindrome };
