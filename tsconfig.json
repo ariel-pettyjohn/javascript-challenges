@@ -12,6 +12,7 @@
         "./src/algorithms/arraySum.ts",
         "./src/algorithms/factorial.ts",
         "./src/algorithms/helloWorld.ts",
+        "./src/algorithms/isPalindrome.ts",
         "./src/algorithms/mergeSort.ts",
         "./src/algorithms/Random.ts",
         "./src/algorithms/range.ts",
