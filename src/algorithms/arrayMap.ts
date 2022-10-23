@@ -9,7 +9,7 @@ enum Implementation {
     tailRecursive = 'tailRecursive',
 }
 
-function forMap (array: any[], callback: IMapCallback): any[] {
+function _forMap (array: any[], callback: IMapCallback): any[] {
     const _array: any[] = [...array];
     for (let i = 0; i < array.length; i++) {
         _array[i] = callback(array[i]);
@@ -17,7 +17,7 @@ function forMap (array: any[], callback: IMapCallback): any[] {
     return _array;
 }
 
-function whileMap (array: any[], callback: IMapCallback): any[] {
+function _whileMap (array: any[], callback: IMapCallback): any[] {
     let    index: number = 0;
     const _array: any[]  = [...array];
     while (index < array.length) {
@@ -27,20 +27,20 @@ function whileMap (array: any[], callback: IMapCallback): any[] {
     return _array;
 }
 
-function recursiveMap (array: any[], callback: IMapCallback): any[] {
+function _recursiveMap (array: any[], callback: IMapCallback): any[] {
     return array.length === 0
         ? []
-        : [callback(array[0]), ...recursiveMap(array.slice(1), callback)];
+        : [callback(array[0]), ..._recursiveMap(array.slice(1), callback)];
 }
 
-function tailRecursiveMap (
+function _tailRecursiveMap (
     array   : any[], 
     callback: IMapCallback, 
     result  : any[] = []
 ): any[] {
     return array.length === 0
         ? result
-        : tailRecursiveMap(
+        : _tailRecursiveMap(
             array.slice(1), 
             callback, 
             [...result, callback(array[0])]
@@ -54,13 +54,13 @@ function map (
 ): any[] {
     switch (implementation) {
         case Implementation.for:
-            return forMap(array, callback);
+            return _forMap(array, callback);
         case Implementation.while:
-            return whileMap(array, callback);
+            return _whileMap(array, callback);
         case Implementation.recursive:
-            return recursiveMap(array, callback);
+            return _recursiveMap(array, callback);
         default:
-            return tailRecursiveMap(array, callback);
+            return _tailRecursiveMap(array, callback);
     }
 }
 

@@ -6,14 +6,14 @@ var Implementation;
     Implementation["recursive"] = "recursive";
     Implementation["tailRecursive"] = "tailRecursive";
 })(Implementation || (Implementation = {}));
-function forMap(array, callback) {
+function _forMap(array, callback) {
     const _array = [...array];
     for (let i = 0; i < array.length; i++) {
         _array[i] = callback(array[i]);
     }
     return _array;
 }
-function whileMap(array, callback) {
+function _whileMap(array, callback) {
     let index = 0;
     const _array = [...array];
     while (index < array.length) {
@@ -22,26 +22,26 @@ function whileMap(array, callback) {
     }
     return _array;
 }
-function recursiveMap(array, callback) {
+function _recursiveMap(array, callback) {
     return array.length === 0
         ? []
-        : [callback(array[0]), ...recursiveMap(array.slice(1), callback)];
+        : [callback(array[0]), ..._recursiveMap(array.slice(1), callback)];
 }
-function tailRecursiveMap(array, callback, result = []) {
+function _tailRecursiveMap(array, callback, result = []) {
     return array.length === 0
         ? result
-        : tailRecursiveMap(array.slice(1), callback, [...result, callback(array[0])]);
+        : _tailRecursiveMap(array.slice(1), callback, [...result, callback(array[0])]);
 }
 function map(array, callback, implementation = Implementation.tailRecursive) {
     switch (implementation) {
         case Implementation.for:
-            return forMap(array, callback);
+            return _forMap(array, callback);
         case Implementation.while:
-            return whileMap(array, callback);
+            return _whileMap(array, callback);
         case Implementation.recursive:
-            return recursiveMap(array, callback);
+            return _recursiveMap(array, callback);
         default:
-            return tailRecursiveMap(array, callback);
+            return _tailRecursiveMap(array, callback);
     }
 }
 module.exports = { map };
