@@ -1,6 +1,4 @@
-interface IMergeSortCallback {
-    (x: any, y: any): boolean;
-}
+import { IMergeSortCallback } from '../interfaces';
 
 function mergeSort (array: any[], callback: IMergeSortCallback): any[] {
     function merge (

@@ -1,17 +1,6 @@
-interface IMapCallback {
-    (x: any): any
-};
+import { IMapCallback, IReduceCallback } from '../interfaces';
 
-interface IReduceCallback {
-    (x: any, y: any): boolean
-}
-
-enum Implementation {
-    for           = 'for',
-    while         = 'while',
-    recursive     = 'recursive',
-    tailRecursive = 'tailRecursive',
-}
+import { Implementation } from '../enums';
 
 export default class SuperArray extends Array {
     private static _forMap (array: any[], callback: IMapCallback): any[] {

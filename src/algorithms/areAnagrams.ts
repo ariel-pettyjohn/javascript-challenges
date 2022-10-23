@@ -1,4 +1,4 @@
-import ICharacterFrequencies from '../types/ICharacterFrequencies';
+import { ICharacterFrequencies } from '../interfaces';
 
 import getCharacterFrequencies from './getCharacterFrequencies';
 

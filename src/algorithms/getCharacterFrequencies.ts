@@ -1,4 +1,4 @@
-import ICharacterFrequencies from '../types/ICharacterFrequencies';
+import { ICharacterFrequencies } from '../interfaces';
 
 function getCharacterFrequencies (string: string): ICharacterFrequencies {
     const _string             : string                = string.toLowerCase();

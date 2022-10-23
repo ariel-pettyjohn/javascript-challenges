@@ -1,11 +1,4 @@
-;
-var Implementation;
-(function (Implementation) {
-    Implementation["for"] = "for";
-    Implementation["while"] = "while";
-    Implementation["recursive"] = "recursive";
-    Implementation["tailRecursive"] = "tailRecursive";
-})(Implementation || (Implementation = {}));
+import { Implementation } from '../enums';
 export default class SuperArray extends Array {
     static _forMap(array, callback) {
         const _array = [...array];
@@ -36,12 +29,12 @@ export default class SuperArray extends Array {
             ? result
             : SuperArray._tailRecursiveMap(array.slice(1), callback, [...result, callback(array[0])]);
     }
-    static _recursiveReduce(array, callback, initialValue) {
+    static _tailRecursiveReduce(array, callback, initialValue) {
         if (array.length === 0)
             return initialValue;
         else if (array.length === 1)
             return array[0];
-        return SuperArray._recursiveReduce([callback(array[0], array[1]), ...array.slice(2)], callback, initialValue);
+        return SuperArray._tailRecursiveReduce([callback(array[0], array[1]), ...array.slice(2)], callback, initialValue);
     }
     superMap(callback, implementation = Implementation.tailRecursive) {
         switch (implementation) {
@@ -56,6 +49,6 @@ export default class SuperArray extends Array {
         }
     }
     superReduce(callback, initialValue) {
-        return SuperArray._recursiveReduce(this, callback, initialValue);
+        return SuperArray._tailRecursiveReduce(this, callback, initialValue);
     }
 }
