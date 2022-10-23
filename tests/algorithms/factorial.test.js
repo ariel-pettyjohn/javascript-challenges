@@ -1,4 +1,7 @@
-import { factorial, tailRecursiveFactorial } from '../../build/algorithms/factorial';
+import { 
+    factorial, 
+    tailRecursiveFactorial 
+} from '../../build/algorithms/factorial';
 
 const tests = [
     [0,      1],

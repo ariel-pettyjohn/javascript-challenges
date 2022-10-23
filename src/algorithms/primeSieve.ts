@@ -1,13 +1,13 @@
-import range from './range';
+import SuperArray from '../data-structures/SuperArray';
 
-export function sieve (n: number): number[] {
-    let candidates: number[] = range(n - 1, 2);
+export function sieve (n: number): SuperArray {
+    let candidates: SuperArray = SuperArray.range(n - 1, 2);
     for (let i = 2; i <= Math.sqrt(n); i++) {
         // This condition effectively ensures that i is the next smallest prime
         if (candidates.includes(i)) {
-            candidates = candidates.filter((candidate) => {
+            candidates = new SuperArray(...candidates.filter((candidate) => {
                 return candidate === i || candidate % i !== 0;
-            });
+            }));
         }
     }
     return candidates;
@@ -15,15 +15,15 @@ export function sieve (n: number): number[] {
 
 export function tailRecursiveSieve (
     n         : number, 
-    i         : number   = 2, 
-    candidates: number[] = range(n - 1, 2)
-) {
+    i         : number     = 2, 
+    candidates: SuperArray = SuperArray.range(n - 1, 2)
+): SuperArray {
     if (i > Math.sqrt(n)) return candidates;
     // This condition ensures that i is always the next smallest prime
-    const _candidates: number[] = candidates.includes(i) 
-        ? candidates.filter((candidate) => {
+    const _candidates: SuperArray = candidates.includes(i) 
+        ? new SuperArray(...candidates.filter((candidate) => {
             return candidate === i || candidate % i !== 0
-        })
+        }))
         : candidates;
     return tailRecursiveSieve(n, i + 1, _candidates);
 }

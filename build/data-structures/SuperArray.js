@@ -1,11 +1,10 @@
 import { Implementation } from '../enums';
 export default class SuperArray extends Array {
     static range(n, offset = 0) {
-        if (n === 1)
-            return [offset];
+        //if (n === 1) return new SuperArray(...[offset]);
         const array = [...Array(n).keys()];
         return offset
-            ? new SuperArray(...array).superMap((key) => key + offset)
+            ? new SuperArray(...array.map((key) => key + offset))
             : new SuperArray(...array);
     }
     superMap(callback, implementation = Implementation.tailRecursive) {
@@ -18,7 +17,7 @@ export default class SuperArray extends Array {
                     }
                     return _array;
                 }
-                return _forMap(this, callback);
+                return new SuperArray(..._forMap(this, callback));
             case Implementation.while:
                 function _whileMap(array, callback) {
                     let index = 0;
@@ -29,7 +28,7 @@ export default class SuperArray extends Array {
                     }
                     return _array;
                 }
-                return _whileMap(this, callback);
+                return new SuperArray(..._whileMap(this, callback));
             case Implementation.recursive:
                 function _recursiveMap(array, callback) {
                     return array.length === 0
@@ -39,14 +38,14 @@ export default class SuperArray extends Array {
                             ..._recursiveMap(array.slice(1), callback)
                         ];
                 }
-                return _recursiveMap(this, callback);
+                return new SuperArray(..._recursiveMap(this, callback));
             default:
                 function _tailRecursiveMap(array, callback, result = []) {
                     return array.length === 0
                         ? result
                         : _tailRecursiveMap(array.slice(1), callback, [...result, callback(array[0])]);
                 }
-                return _tailRecursiveMap(this, callback);
+                return new SuperArray(..._tailRecursiveMap(this, callback));
         }
     }
     superReduce(callback, initialValue) {
@@ -69,7 +68,7 @@ export default class SuperArray extends Array {
                     const tail = array.slice(0, -1);
                     return [head, ..._recursiveReverse(tail)];
                 }
-                return _recursiveReverse(this);
+                return new SuperArray(..._recursiveReverse(this));
             default:
                 function _tailRecursiveReverse(array, result = []) {
                     if (array.length <= 1)
@@ -81,7 +80,7 @@ export default class SuperArray extends Array {
                         ..._tailRecursiveReverse(tail, [head, ...result])
                     ];
                 }
-                return _tailRecursiveReverse(this);
+                return new SuperArray(..._tailRecursiveReverse(this));
         }
     }
     superSum(implementation = Implementation.tailRecursive) {
