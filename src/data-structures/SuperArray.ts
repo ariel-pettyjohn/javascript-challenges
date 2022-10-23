@@ -2,6 +2,10 @@ interface IMapCallback {
     (x: any): any
 };
 
+interface IReduceCallback {
+    (x: any, y: any): boolean
+}
+
 enum Implementation {
     for           = 'for',
     while         = 'while',
@@ -51,6 +55,20 @@ export default class SuperArray extends Array {
             );
     }
 
+    private static _recursiveReduce (
+        array       : any[], 
+        callback    : IReduceCallback, 
+        initialValue: any
+    ): any {
+        if      (array.length === 0) return initialValue;
+        else if (array.length === 1) return array[0];
+        return SuperArray._recursiveReduce(
+            [callback(array[0], array[1]), ...array.slice(2)], 
+            callback,
+            initialValue
+        );
+    }
+
     superMap (
         callback      : IMapCallback,
         implementation: Implementation = Implementation.tailRecursive
@@ -65,5 +83,12 @@ export default class SuperArray extends Array {
             default:
                 return SuperArray._tailRecursiveMap(this, callback);
         }
+    }
+
+    superReduce (
+        callback    : IReduceCallback, 
+        initialValue: any
+    ): any {
+        return SuperArray._recursiveReduce(this, callback, initialValue);
     }
 }

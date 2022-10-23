@@ -48,4 +48,14 @@ export default class SuperArray extends Array {
                 return SuperArray._tailRecursiveMap(this, callback);
         }
     }
+    static _recursiveReduce(array, callback, initialValue) {
+        if (array.length === 0)
+            return initialValue;
+        else if (array.length === 1)
+            return array[0];
+        return SuperArray._recursiveReduce([callback(array[0], array[1]), ...array.slice(2)], callback, initialValue);
+    }
+    superReduce(callback, initialValue) {
+        return SuperArray._recursiveReduce(this, callback, initialValue);
+    }
 }
