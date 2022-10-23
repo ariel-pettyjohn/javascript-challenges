@@ -10,42 +10,44 @@ enum Implementation {
 }
 
 export default class SuperArray extends Array {
-    private _forMap (callback: IMapCallback): any[] {
-        const array: SuperArray = new SuperArray(...this);
-        for (let i = 0; i < this.length; i++) {
-            array[i] = callback(this[i]);
+    private static _forMap (array: any[], callback: IMapCallback): any[] {
+        const _array: any[] = [...array];
+        for (let i = 0; i < array.length; i++) {
+            _array[i] = callback(array[i]);
         }
-        return array;
+        return _array;
     }
     
-    private _whileMap (callback: IMapCallback): any[] {
-        let   index: number     = 0;
-        const array: SuperArray = new SuperArray(...this);
-        while (index < this.length) {
-            array[index] = callback(this[index]); 
+    private static _whileMap (array: any[], callback: IMapCallback): any[] {
+        let    index: number = 0;
+        const _array: any[]  = [...array];
+        while (index < array.length) {
+            _array[index] = callback(array[index]); 
             index++;
         }
-        return array;
-    } 
-
-    private _recursiveMap (callback: IMapCallback): any[] {
-        return this.length === 0
-            ? new SuperArray()
-            : new SuperArray(...[
-                callback(this[0]), 
-                ...new SuperArray(...this.slice(1))._recursiveMap(callback)
-            ]);
+        return _array;
     }
 
-    private _tailRecursiveMap (
+    private static _recursiveMap (array: any[], callback: IMapCallback): any[] {
+        return array.length === 0
+            ? []
+            : [
+                callback(array[0]), 
+                ...SuperArray._recursiveMap(array.slice(1), callback)
+            ];
+    }
+    
+    private static _tailRecursiveMap (
+        array   : any[], 
         callback: IMapCallback, 
         result  : any[] = []
     ): any[] {
-        return this.length === 0
+        return array.length === 0
             ? result
-            : new SuperArray(...this.slice(1))._tailRecursiveMap(
+            : SuperArray._tailRecursiveMap(
+                array.slice(1), 
                 callback, 
-                new SuperArray(...[...result, callback(this[0])])
+                [...result, callback(array[0])]
             );
     }
 
@@ -55,15 +57,13 @@ export default class SuperArray extends Array {
     ): any[] {
         switch (implementation) {
             case Implementation.for:
-                return this._forMap(callback);
+                return SuperArray._forMap(this, callback);
             case Implementation.while:
-                return this._whileMap(callback);
+                return SuperArray._whileMap(this, callback);
             case Implementation.recursive:
-                return this._recursiveMap(callback);
+                return SuperArray._recursiveMap(this, callback);
             default:
-                return this._tailRecursiveMap(callback);
+                return SuperArray._tailRecursiveMap(this, callback);
         }
     }
 }
-
-module.exports = SuperArray;

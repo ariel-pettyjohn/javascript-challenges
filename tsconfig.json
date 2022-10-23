@@ -13,7 +13,6 @@
     },
     "files": [
         "./src/algorithms/areAnagrams.ts",
-        "./src/algorithms/arrayMap.ts",
         "./src/algorithms/arrayReduce.ts",
         "./src/algorithms/arrayReverse.ts",
         "./src/algorithms/arraySum.ts",
@@ -28,6 +27,7 @@
         "./src/algorithms/stringReverse.ts",
         "./src/algorithms/zip.ts",
         "./src/data-structures/LinkedList.ts",
+        "./src/data-structures/SuperArray.ts",
         "./src/data-structures/SuperSet.ts"
     ]
 }
