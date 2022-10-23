@@ -1,6 +1,6 @@
-import range from './range';
+import SuperArray from '../data-structures/SuperArray';
 export default function fizzbuzz(n) {
-    return range(n, 1).map((i) => {
+    return SuperArray.range(n, 1).map((i) => {
         if (i % 15 === 0) {
             return 'fizzbuzz';
         }

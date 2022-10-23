@@ -78,6 +78,14 @@ export default class SuperArray extends Array<any> {
         ];
     }
 
+    static range (n: number, offset: number = 0): number[] {
+        if (n === 1) return [offset];
+        const array: number[] = [...Array(n).keys()];
+        return offset 
+            ? new SuperArray(...array.map((key) => key + offset))
+            : new SuperArray(...array);
+    }
+
     superMap (
         callback      : IMapCallback,
         implementation: Implementation = Implementation.tailRecursive

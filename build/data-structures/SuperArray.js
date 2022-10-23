@@ -53,6 +53,14 @@ export default class SuperArray extends Array {
             ...SuperArray._tailRecursiveReverse(tail, [head, ...result])
         ];
     }
+    static range(n, offset = 0) {
+        if (n === 1)
+            return [offset];
+        const array = [...Array(n).keys()];
+        return offset
+            ? new SuperArray(...array.map((key) => key + offset))
+            : new SuperArray(...array);
+    }
     superMap(callback, implementation = Implementation.tailRecursive) {
         switch (implementation) {
             case Implementation.for:

@@ -21,7 +21,6 @@
         "./src/algorithms/isPalindrome.ts",
         "./src/algorithms/mergeSort.ts",
         "./src/algorithms/Random.ts",
-        "./src/algorithms/range.ts",
         "./src/algorithms/stringReverse.ts",
         "./src/algorithms/zip.ts",
         "./src/data-structures/LinkedList.ts",

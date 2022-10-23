@@ -1,4 +1,4 @@
-import range from '../../build/algorithms/range';
+import SuperArray from '../../build/data-structures/SuperArray';
 
 const tests = [
     [[0, 0], [                ]],
@@ -12,11 +12,11 @@ const tests = [
     [[6, 1], [1, 2, 3, 4, 5, 6]]
 ];
 
-tests.forEach(([args, expectedArray]) => {
-    const text = `of ${args[0]} with offset ${args[1]} should be ${expectedArray}`;
+tests.forEach(([[n, offset], expectedArray]) => {
+    const text = `of ${n} with offset ${offset} should be ${expectedArray}`;
 
-    test(`range ${text}`, () => {
-        expect(range(...args)).toEqual(expectedArray);
+    test(`SuperArray.range ${text}`, () => {
+        expect(SuperArray.range(n, offset)).toEqual(expectedArray);
     });
 
     // TODO: Add test for recursive range function
