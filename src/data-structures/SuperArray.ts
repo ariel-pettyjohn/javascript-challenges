@@ -55,14 +55,14 @@ export default class SuperArray extends Array {
             );
     }
 
-    private static _recursiveReduce (
+    private static _tailRecursiveReduce (
         array       : any[], 
         callback    : IReduceCallback, 
         initialValue: any
     ): any {
         if      (array.length === 0) return initialValue;
         else if (array.length === 1) return array[0];
-        return SuperArray._recursiveReduce(
+        return SuperArray._tailRecursiveReduce(
             [callback(array[0], array[1]), ...array.slice(2)], 
             callback,
             initialValue
@@ -89,6 +89,6 @@ export default class SuperArray extends Array {
         callback    : IReduceCallback, 
         initialValue: any
     ): any {
-        return SuperArray._recursiveReduce(this, callback, initialValue);
+        return SuperArray._tailRecursiveReduce(this, callback, initialValue);
     }
 }
