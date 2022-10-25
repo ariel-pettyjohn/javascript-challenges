@@ -1,29 +1,13 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        "outDir": "build",
+        "outDir": "./build",
         "target": "es2020",
-        "lib": [
-          "es2020", "DOM"
-        ],
+        "lib": ["es2020", "DOM"],
         "module": "ES2020",
         "moduleResolution": "Node",
         "strict": true,
         "allowSyntheticDefaultImports": true
     },
-    "files": [
-        "./src/algorithms/areAnagrams.ts",
-        "./src/algorithms/factorial.ts",
-        "./src/algorithms/fizzbuzz.ts",
-        "./src/algorithms/getCharacterFrequencies.ts",
-        "./src/algorithms/helloWorld.ts",
-        "./src/algorithms/isPalindrome.ts",
-        "./src/algorithms/mergeSort.ts",
-        "./src/algorithms/Random.ts",
-        "./src/algorithms/stringReverse.ts",
-        "./src/algorithms/zip.ts",
-        "./src/data-structures/LinkedList.ts",
-        "./src/data-structures/SuperArray.ts",
-        "./src/data-structures/SuperSet.ts"
-    ]
+    "exclude": ["./build", "./tests"]
 }
