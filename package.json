@@ -9,7 +9,9 @@
         "typescript": "^4.8.4"
     },
     "scripts": {
-        "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+        "build": "npx tsc -b",
+        "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+        "integrate": "npm run build && npm test"
     },
     "optionalDependencies": {
         "fsevents": "^2.3.2"
