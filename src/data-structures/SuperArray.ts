@@ -4,7 +4,7 @@ import { Implementation } from '../enums';
 
 export default class SuperArray extends Array<any> {        
     static range (n: number, offset: number = 0): SuperArray {
-        //if (n === 1) return new SuperArray(...[offset]);
+        if (n === 1) return new SuperArray(offset);
         const array: number[] = [...Array(n).keys()];
         return offset 
             ? new SuperArray(...array.map((key) => key + offset))

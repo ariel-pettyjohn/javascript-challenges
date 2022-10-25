@@ -1,7 +1,8 @@
 import { Implementation } from '../enums';
 export default class SuperArray extends Array {
     static range(n, offset = 0) {
-        //if (n === 1) return new SuperArray(...[offset]);
+        if (n === 1)
+            return new SuperArray(offset);
         const array = [...Array(n).keys()];
         return offset
             ? new SuperArray(...array.map((key) => key + offset))
