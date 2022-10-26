@@ -1,7 +1,7 @@
 function nTupleIsUnique (
     nTuples        : number[][], 
     candidateNTuple: number[]
-) : boolean {
+): boolean {
     return !nTuples.some((nTuple) => {
         return nTuple.every((summand) => {
             return candidateNTuple.includes(summand);
@@ -20,13 +20,11 @@ function getTargetSumNTupleIndices (
     targetSum: number
 ): number[][] {
     const indexToSummand = (index: number): number => summands[index];
-    const nTupleIndices         : number[][] = [];
-    const nTuples               : number[][] = [];
-    let   candidateNTupleIndices: number[]   = [];
-    let   candidateNTuple       : number[]   = [];
+    const nTupleIndices: number[][] = [];
+    const nTuples      : number[][] = [];
     for (let i = 0; i < summands.length; i++) {
-        candidateNTupleIndices = [i];
-        candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
+        const candidateNTupleIndices = [i];
+        const candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
         if (
             n === 1 
             && candidateNTuple.reduce(sum) === targetSum
@@ -36,8 +34,8 @@ function getTargetSumNTupleIndices (
             nTuples.push(candidateNTuple);
         } else {
             for (let j = i + 1; j < summands.length; j++) {
-                candidateNTupleIndices = [i, j];
-                candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
+                const candidateNTupleIndices = [i, j];
+                const candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
                 if (
                     n === 2 
                     && candidateNTuple.reduce(sum) === targetSum
@@ -47,8 +45,8 @@ function getTargetSumNTupleIndices (
                     nTuples.push(candidateNTuple);
                 } else {
                     for (let k = j + 1; k < summands.length; k++) {  
-                        candidateNTupleIndices = [i, j, k];
-                        candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
+                        const candidateNTupleIndices = [i, j, k];
+                        const candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
                         if (
                             n === 3 
                             && candidateNTuple.reduce(sum) === targetSum
@@ -70,12 +68,11 @@ export function getTargetSumTupleIndices (
     targetSum: number
 ): number[] {
     const indexTuples = getTargetSumNTupleIndices(summands, 2, targetSum)[0];
-    console.log(indexTuples);
     return indexTuples;
 }
 
 export function getZeroSumTriples (summands: number[]): number[][] {
-    return getTargetSumNTupleIndices(summands, 3, 0).map((indices: number[])=> {
+    return getTargetSumNTupleIndices(summands, 3, 0).map((indices: number[]) => {
         const nTuples = indices.map((index: number) => summands[index]);
         return nTuples;
     });
