@@ -9,55 +9,47 @@ function nTupleIsUnique (
     });
 } 
 
+function range (n: number, offset: number = 0): number[] {
+    if (n === 1) return  [offset];
+    const array: number[] = [...Array(n).keys()];
+    return offset ? array.map((key) => key + offset) : array;
+}
+
 const sum = (x: number, y: number): number => x + y;
 
-// Only implemented to support cases when n=1, n=2, or n=3.
-// TODO: implement as a recursive function that 
-//       accepts an arbitrary n <= summands.length
 function getTargetSumNTupleIndices (
-    summands : number[],
-    n        : number,
-    targetSum: number
+    summands     : number[],
+    n            : number,
+    targetSum    : number,
+    nTupleIndices: number[][] = [],
+    nTuples      : number[][] = [],
+    loopIndices  : number[]   = Array(n).fill(0),
+    loopDepth    : number     = 1
 ): number[][] {
-    const indexToSummand = (index: number): number => summands[index];
-    const nTupleIndices: number[][] = [];
-    const nTuples      : number[][] = [];
-    for (let i = 0; i < summands.length; i++) {
-        const candidateNTupleIndices = [i];
+    const initialIndex: number = loopDepth === 1 ? 0: loopIndices[loopDepth - 2] + 1;
+    for (let index = initialIndex; index < summands.length; index++) {
+        loopIndices[loopDepth - 1] = index;
+        const keyToLoopIndex = (key  : number): number => loopIndices[key];
+        const indexToSummand = (index: number): number => summands[index];
+        const candidateNTupleIndices = range(loopDepth, 0).map(keyToLoopIndex); 
         const candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
         if (
-            n === 1 
+            n === loopDepth
             && candidateNTuple.reduce(sum) === targetSum
-            && nTupleIsUnique(nTuples, candidateNTuple)      
+            && nTupleIsUnique(nTuples, candidateNTuple)
         ) {
             nTupleIndices.push(candidateNTupleIndices);
             nTuples.push(candidateNTuple);
         } else {
-            for (let j = i + 1; j < summands.length; j++) {
-                const candidateNTupleIndices = [i, j];
-                const candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
-                if (
-                    n === 2 
-                    && candidateNTuple.reduce(sum) === targetSum
-                    && nTupleIsUnique(nTuples, candidateNTuple)       
-                ) {
-                    nTupleIndices.push(candidateNTupleIndices);
-                    nTuples.push(candidateNTuple);
-                } else {
-                    for (let k = j + 1; k < summands.length; k++) {  
-                        const candidateNTupleIndices = [i, j, k];
-                        const candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
-                        if (
-                            n === 3 
-                            && candidateNTuple.reduce(sum) === targetSum
-                            && nTupleIsUnique(nTuples, candidateNTuple)    
-                        ) {
-                            nTupleIndices.push(candidateNTupleIndices);
-                            nTuples.push(candidateNTuple);
-                        }
-                    }
-                }
-            }
+            getTargetSumNTupleIndices(
+                summands,
+                n,
+                targetSum,
+                nTupleIndices,
+                nTuples,
+                loopIndices,
+                loopDepth + 1
+            );
         }        
     }
     return nTupleIndices;
