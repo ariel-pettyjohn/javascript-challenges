@@ -1,13 +1,10 @@
-function nTupleIsUnique (
-    nTuples        : number[][], 
-    candidateNTuple: number[]
-): boolean {
-    return !nTuples.some((nTuple) => {
-        return nTuple.every((summand) => {
-            return candidateNTuple.includes(summand);
+function arrayIsUnique (arrays: any[][], array1: any[]): boolean {
+    return !arrays.some((array2) => {
+        return array2.every((element) => {
+            return array1.includes(element);
        });
     });
-} 
+}
 
 function range (n: number, offset: number = 0): number[] {
     if (n === 1) return  [offset];
@@ -17,55 +14,52 @@ function range (n: number, offset: number = 0): number[] {
 
 const sum = (x: number, y: number): number => x + y;
 
-function getTargetSumNTupleIndices (
-    summands     : number[],
-    n            : number,
-    targetSum    : number,
-    nTupleIndices: number[][] = [],
-    nTuples      : number[][] = [],
-    loopIndices  : number[]   = Array(n).fill(0),
-    loopDepth    : number     = 1
+function getTargetSumSummandIndexArrays (
+    summands   : number[],
+    targetSum  : number,
+    n          : number,
+    indexArrays: number[][] = [],
+    arrays     : number[][] = [],
+    indices    : number[]   = Array(n).fill(0),
+    depth      : number     = 1
 ): number[][] {
-    const initialIndex: number = loopDepth === 1 ? 0: loopIndices[loopDepth - 2] + 1;
+    const initialIndex: number = depth === 1 ? 0: indices[depth - 2] + 1;
     for (let index = initialIndex; index < summands.length; index++) {
-        loopIndices[loopDepth - 1] = index;
-        const keyToLoopIndex = (key  : number): number => loopIndices[key];
-        const indexToSummand = (index: number): number => summands[index];
-        const candidateNTupleIndices = range(loopDepth, 0).map(keyToLoopIndex); 
-        const candidateNTuple        = candidateNTupleIndices.map(indexToSummand);
-        if (
-            n === loopDepth
-            && candidateNTuple.reduce(sum) === targetSum
-            && nTupleIsUnique(nTuples, candidateNTuple)
-        ) {
-            nTupleIndices.push(candidateNTupleIndices);
-            nTuples.push(candidateNTuple);
+        indices[depth - 1] = index;
+        if (n === depth) {
+            const keyToIndex     = (key  : number): number => indices[key];
+            const indexToSummand = (index: number): number => summands[index];
+            const indexCandidate        = range(depth, 0).map(keyToIndex); 
+            const candidate             = indexCandidate.map(indexToSummand);
+            const candidateSumsToTarget = candidate.reduce(sum) === targetSum;
+            const candidateIsUnique     = arrayIsUnique(arrays, candidate);
+            if (candidateSumsToTarget && candidateIsUnique) {
+                indexArrays.push(indexCandidate);
+                arrays.push(candidate);
+            }
         } else {
-            getTargetSumNTupleIndices(
-                summands,
-                n,
-                targetSum,
-                nTupleIndices,
-                nTuples,
-                loopIndices,
-                loopDepth + 1
+            getTargetSumSummandIndexArrays(
+                summands, targetSum, n, indexArrays, arrays, indices, depth + 1
             );
         }        
     }
-    return nTupleIndices;
+    return indexArrays;
 }
 
-export function getTargetSumTupleIndices (
+export function getTargetSumSummandIndexTuple (
     summands : number[],
     targetSum: number
 ): number[] {
-    const indexTuples = getTargetSumNTupleIndices(summands, 2, targetSum)[0];
-    return indexTuples;
+    const indexTuples = getTargetSumSummandIndexArrays(summands, targetSum, 2);
+    const indexTuple  = indexTuples[0];
+    return indexTuple;
 }
 
-export function getZeroSumTriples (summands: number[]): number[][] {
-    return getTargetSumNTupleIndices(summands, 3, 0).map((indices: number[]) => {
-        const nTuples = indices.map((index: number) => summands[index]);
-        return nTuples;
+export function getZeroSumSummandTriples (summands: number[]): number[][] {
+    const indexTriples   = getTargetSumSummandIndexArrays(summands, 0, 3);
+    const summandTriples = indexTriples.map((triple: number[]) => {
+        const summandTriple = triple.map((index: number) => summands[index]);
+        return summandTriple;
     });
+    return summandTriples;
 }

@@ -1,4 +1,7 @@
-import { getTargetSumTupleIndices, getZeroSumTriples } from '../../build/algorithms/tupleSum';
+import { 
+    getTargetSumSummandIndexTuple, 
+    getZeroSumSummandTriples 
+} from '../../build/algorithms/tupleSum';
 
 const getTargetSumTupleIndicesTests = [
     [[[2, 7, 11, 15], 9], [0, 1]],
@@ -7,9 +10,10 @@ const getTargetSumTupleIndicesTests = [
 ];
 
 getTargetSumTupleIndicesTests.forEach(([[summands, targetSum], expectedIndexArray]) => {
-    describe(`getTargetSumTupleIndices:`, () => {
+    describe(`getTargetSumSummandIndexTuple:`, () => {
         test(`given ${summands} and ${targetSum}, returns ${expectedIndexArray}`, () => {
-            expect(getTargetSumTupleIndices(summands, targetSum)).toEqual(expectedIndexArray);
+            expect(getTargetSumSummandIndexTuple(summands, targetSum))
+                .toEqual(expectedIndexArray);
         });
     });
 });
@@ -19,9 +23,9 @@ const getZeroSumTriplesTests = [
 ];
 
 getZeroSumTriplesTests.forEach(([summands, expectedSummandsArrays]) => {
-    describe(`getZeroSumTriples:`, () => {
+    describe(`getZeroSumSummandTriples:`, () => {
         test(`given ${summands}, returns ${expectedSummandsArrays}`, () => {
-            expect(getZeroSumTriples(summands)).toEqual(expectedSummandsArrays);
+            expect(getZeroSumSummandTriples(summands)).toEqual(expectedSummandsArrays);
         });
     });
 });

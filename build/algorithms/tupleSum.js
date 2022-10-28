@@ -1,7 +1,7 @@
-function nTupleIsUnique(nTuples, candidateNTuple) {
-    return !nTuples.some((nTuple) => {
-        return nTuple.every((summand) => {
-            return candidateNTuple.includes(summand);
+function arrayIsUnique(arrays, array1) {
+    return !arrays.some((array2) => {
+        return array2.every((element) => {
+            return array1.includes(element);
         });
     });
 }
@@ -12,33 +12,38 @@ function range(n, offset = 0) {
     return offset ? array.map((key) => key + offset) : array;
 }
 const sum = (x, y) => x + y;
-function getTargetSumNTupleIndices(summands, n, targetSum, nTupleIndices = [], nTuples = [], loopIndices = Array(n).fill(0), loopDepth = 1) {
-    const initialIndex = loopDepth === 1 ? 0 : loopIndices[loopDepth - 2] + 1;
+function getTargetSumSummandIndexArrays(summands, targetSum, n, indexArrays = [], arrays = [], indices = Array(n).fill(0), depth = 1) {
+    const initialIndex = depth === 1 ? 0 : indices[depth - 2] + 1;
     for (let index = initialIndex; index < summands.length; index++) {
-        loopIndices[loopDepth - 1] = index;
-        const keyToLoopIndex = (key) => loopIndices[key];
-        const indexToSummand = (index) => summands[index];
-        const candidateNTupleIndices = range(loopDepth, 0).map(keyToLoopIndex);
-        const candidateNTuple = candidateNTupleIndices.map(indexToSummand);
-        if (n === loopDepth
-            && candidateNTuple.reduce(sum) === targetSum
-            && nTupleIsUnique(nTuples, candidateNTuple)) {
-            nTupleIndices.push(candidateNTupleIndices);
-            nTuples.push(candidateNTuple);
+        indices[depth - 1] = index;
+        if (n === depth) {
+            const keyToIndex = (key) => indices[key];
+            const indexToSummand = (index) => summands[index];
+            const indexCandidate = range(depth, 0).map(keyToIndex);
+            const candidate = indexCandidate.map(indexToSummand);
+            const candidateSumsToTarget = candidate.reduce(sum) === targetSum;
+            const candidateIsUnique = arrayIsUnique(arrays, candidate);
+            if (candidateSumsToTarget && candidateIsUnique) {
+                indexArrays.push(indexCandidate);
+                arrays.push(candidate);
+            }
         }
         else {
-            getTargetSumNTupleIndices(summands, n, targetSum, nTupleIndices, nTuples, loopIndices, loopDepth + 1);
+            getTargetSumSummandIndexArrays(summands, targetSum, n, indexArrays, arrays, indices, depth + 1);
         }
     }
-    return nTupleIndices;
+    return indexArrays;
 }
-export function getTargetSumTupleIndices(summands, targetSum) {
-    const indexTuples = getTargetSumNTupleIndices(summands, 2, targetSum)[0];
-    return indexTuples;
+export function getTargetSumSummandIndexTuple(summands, targetSum) {
+    const indexTuples = getTargetSumSummandIndexArrays(summands, targetSum, 2);
+    const indexTuple = indexTuples[0];
+    return indexTuple;
 }
-export function getZeroSumTriples(summands) {
-    return getTargetSumNTupleIndices(summands, 3, 0).map((indices) => {
-        const nTuples = indices.map((index) => summands[index]);
-        return nTuples;
+export function getZeroSumSummandTriples(summands) {
+    const indexTriples = getTargetSumSummandIndexArrays(summands, 0, 3);
+    const summandTriples = indexTriples.map((triple) => {
+        const summandTriple = triple.map((index) => summands[index]);
+        return summandTriple;
     });
+    return summandTriples;
 }
