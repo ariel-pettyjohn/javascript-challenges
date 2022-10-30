@@ -1,4 +1,4 @@
-// import { ICallback } from "../interfaces";
+import { ICallback } from "../interfaces";
 
 export default class Tuple {
     private elements: any[] = [];
@@ -22,7 +22,7 @@ export default class Tuple {
         return offset ? tuple.map(keyToOffsetKey) : tuple;
     }
     */
-   
+
     get (index: number): any {
         const element: any = this.elements[index];
         return element;
@@ -43,7 +43,6 @@ export default class Tuple {
         }
     }
 
-    /*
     includes (target: any): boolean {
         const elementIsTarget = (element: any) => element === target;
         const result: boolean = this.elements.some(elementIsTarget);
@@ -51,8 +50,8 @@ export default class Tuple {
     }
 
     isUnique (tupleArray: Tuple[]): boolean {
-        const includesEveryInstanceElement = (tuple: any) => {
-            const elementIsIncludedInInstance = (element: any) => {
+        const includesEveryInstanceElement = (tuple: any): boolean => {
+            const elementIsIncludedInInstance = (element: any): boolean => {
                 return this.includes(element);
             };
             return tuple.every(elementIsIncludedInInstance);
@@ -65,6 +64,7 @@ export default class Tuple {
         return result;
     }
 
+    /*
     map (callback: ICallback): Tuple {
         const tuple: Tuple = new Tuple(...this.elements.map(callback));
         return tuple;

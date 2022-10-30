@@ -1,14 +1,9 @@
 export default class Tuple {
-    constructor(..._elements) {
-        this._elements = [];
-        _elements.forEach((element, index) => {
-            this._elements[index] = element;
+    constructor(...elements) {
+        this.elements = [];
+        elements.forEach((element, index) => {
+            this.elements[index] = element;
         });
-    }
-    get elements() {
-        const _elements = this._elements;
-        ;
-        return _elements;
     }
     get length() {
         const _length = this.elements.length;
@@ -42,5 +37,23 @@ export default class Tuple {
             console.error(error);
             return error?.toString();
         }
+    }
+    includes(target) {
+        const elementIsTarget = (element) => element === target;
+        const result = this.elements.some(elementIsTarget);
+        return result;
+    }
+    isUnique(tupleArray) {
+        const includesEveryInstanceElement = (tuple) => {
+            const elementIsIncludedInInstance = (element) => {
+                return this.includes(element);
+            };
+            return tuple.every(elementIsIncludedInInstance);
+        };
+        return !tupleArray.some(includesEveryInstanceElement);
+    }
+    every(callback) {
+        const result = this.elements.every(callback);
+        return result;
     }
 }
