@@ -26,7 +26,7 @@ export default class Tuple {
     }
     set(index, element) {
         try {
-            if (!this.elements[index]) {
+            if (index >= this.elements.length) {
                 throw new Error('Index out of range');
             }
             else if (typeof element !== typeof this.elements[index]) {
@@ -63,8 +63,8 @@ export default class Tuple {
         const tuple = new Tuple(...this.elements.map(callback));
         return tuple;
     }
-    reduce(reducer) {
-        const result = this.elements.reduce(reducer);
+    reduce(reducer, initialValue = null) {
+        const result = this.elements.reduce(reducer, initialValue);
         return result;
     }
 }

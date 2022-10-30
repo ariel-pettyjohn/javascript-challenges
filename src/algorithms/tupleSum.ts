@@ -1,58 +1,43 @@
-function listIsUnique (listArray: any[][], list1: any[]): boolean {
-    return !listArray.some((list2) => {
-        return list2.every((element) => {
-            return list1.includes(element);
-       });
-    });
-}
-    
-function range (n: number, offset: number = 0): number[] {
-    if (n === 1) return [offset];
-    const array: number[] = [...Array(n).keys()];
-    const keyToOffsetKey = (key: number): number => key + offset;
-    return offset ? array.map(keyToOffsetKey) : array;
-}
+import Tuple from '../data-structures/Tuple';
 
-const sum = (x: number, y: number): number => x + y;
-
-interface IReducer {
-    (x: any, y: any): any
-}
+import { ICallback } from '../interfaces';
 
 function getTargetReducerIndexTuples (
-    summands   : number[],
+    values     : number[],
     target     : any,
     n          : number,
-    reducer    : IReducer,
-    indexTuples: number[][] = [],
-    tuples     : any[][]    = [],
-    indices    : number[]   = Array(n).fill(0),
-    depth      : number     = 1
-): number[][] { 
-    const initialIndex: number = depth === 1 ? 0: indices[depth - 2] + 1;
-    for (let index = initialIndex; index < summands.length; index++) {
-        indices[depth - 1] = index;
-        if (n === depth) {
-            const keyToIndex     = (key  : number): number => indices[key];
-            const indexToSummand = (index: number): number => summands[index];
-            const indexCandidate        = range(depth, 0).map(keyToIndex); 
-            const candidate             = indexCandidate.map(indexToSummand);
-            const candidateSumsToTarget = candidate.reduce(reducer) === target;
-            const candidateIsUnique     = listIsUnique(tuples, candidate);
-            if (candidateSumsToTarget && candidateIsUnique) {
+    reducer    : ICallback,
+    indexTuples: Tuple[] = [],
+    valueTuples: Tuple[] = [],
+    indices    : Tuple   = new Tuple(...Array(n).fill(0)),
+    loopDepth  : number  = 1
+): Tuple[] { 
+    const initialIndex: number = loopDepth === 1 ? 0: indices.get(loopDepth - 2) + 1;
+    for (let index = initialIndex; index < values.length; index++) {
+        console.log(indices, loopDepth - 1)
+        indices.set(loopDepth - 1, index);
+        console.log(indices, loopDepth - 1)
+        if (n === loopDepth) {
+            const keyToIndex   = (key  : number): number => indices.get(key);
+            const indexToValue = (index: number): number => values[index];
+            const indexCandidate          : Tuple   = Tuple.range(loopDepth, 0).map(keyToIndex); 
+            const valueCandidate          : Tuple   = indexCandidate.map(indexToValue);
+            const candidateReducesToTarget: boolean = valueCandidate.reduce(reducer) === target;
+            const candidateIsUnique       : boolean = valueCandidate.isUnique(valueTuples);
+            if (candidateReducesToTarget && candidateIsUnique) {
                 indexTuples.push(indexCandidate);
-                tuples.push(candidate);
+                valueTuples.push(valueCandidate);
             }
         } else {
             getTargetReducerIndexTuples(
-                summands,
+                values,
                 target,
                 n,
                 reducer,
                 indexTuples,
-                tuples,
+                valueTuples,
                 indices,
-                depth + 1
+                loopDepth + 1
             );
         }        
     }
@@ -63,25 +48,28 @@ function getTargetSumIndexTuples (
     summands : number[],
     targetSum: number,
     n        : number
-): number[][] {
-    const tuples = getTargetReducerIndexTuples(summands, targetSum, n, sum);
-    return tuples;
+): Tuple[] {
+    const sum = (x: number, y: number): number => x + y;
+    const valueTuples: Tuple[] = getTargetReducerIndexTuples(summands, targetSum, n, sum);
+    return valueTuples;
 }
 
 export function getTargetSumSummandIndexTuple (
     summands : number[],
     targetSum: number
-): number[] {
-    const indexTuples = getTargetSumIndexTuples(summands, targetSum, 2);
-    const indexTuple  = indexTuples[0];
+): Tuple {
+    const indexTuples: Tuple[] = getTargetSumIndexTuples(summands, targetSum, 2);
+    const indexTuple : Tuple   = indexTuples[0];
     return indexTuple;
 }
 
-export function getZeroSumSummandTriples (summands: number[]): number[][] {
-    const indexTriples   = getTargetSumIndexTuples(summands, 0, 3);
-    const summandTriples = indexTriples.map((triple: number[]) => {
-        const summandTriple = triple.map((index: number) => summands[index]);
+export function getZeroSumSummandTriples (summands: number[]): Tuple[] {
+    const indexTriples  : Tuple[] = getTargetSumIndexTuples(summands, 0, 3);
+    const indexTripleToSummandTriple = (indexTriple: Tuple) => {
+        const indexToSummand = (index: number): number => summands[index];
+        const summandTriple: Tuple = indexTriple.map(indexToSummand);
         return summandTriple;
-    });
+    }
+    const summandTriples: Tuple[] = indexTriples.map(indexTripleToSummandTriple);
     return summandTriples;
 }

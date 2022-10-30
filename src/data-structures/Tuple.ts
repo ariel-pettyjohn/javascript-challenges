@@ -21,7 +21,7 @@ export default class Tuple {
         return offset ? tuple.map(keyToOffsetKey) : tuple;
     }
 
-    toArray(): any[] {
+    toArray (): any[] {
         const array = this.elements;
         return array;
     }
@@ -33,7 +33,7 @@ export default class Tuple {
    
     set (index: number, element: any): void | string {
         try {
-            if (!this.elements[index]) {
+            if (index >= this.elements.length) {
                 throw new Error('Index out of range');
             } else if (typeof element !== typeof this.elements[index]) {
                 throw new Error('Incorrect element type');
@@ -72,8 +72,8 @@ export default class Tuple {
         return tuple;
     }
 
-    reduce (reducer: ICallback): any {
-        const result: any = this.elements.reduce(reducer);
+    reduce (reducer: ICallback, initialValue: any = null): any {
+        const result: any = this.elements.reduce(reducer, initialValue);
         return result;
     }
 }

@@ -5,10 +5,10 @@ const incorrectElement = 'Error: Incorrect element type'
 
 const tupleInstanceTests = [
     /* elements   , tuple               , length, elementAt1, includes2, errorString     , tupleArray           , isUnique, doubled             , sum */
-    [  [ 0, 1]    , new Tuple(0, 1)     , 2     , 1         , false    , outOfRange      , [new Tuple(0, 1)]    , false   , new Tuple(0, 2)     , 1    ], 
-    [  [ 1, 2]    , new Tuple(1, 2)     , 2     , 2         , true     , outOfRange      , []                   , true    , new Tuple(2, 4)     , 3    ],
-    [  [-1, 0,  1], new Tuple(-1, 0, 1) , 3     , 0         , false    , incorrectElement, [new Tuple(-1, 0, 1)], false   , new Tuple(-2, 0,  2), 0    ],  
-    [  [-1, 2, -1], new Tuple(-1, 2, -1), 3     , 2         , true     , incorrectElement, []                   , true    , new Tuple(-2, 4, -2), 0    ]
+     [ [ 0, 1]    , new Tuple(0, 1)     , 2     , 1         , false    , outOfRange      , [new Tuple(0, 1)]    , false   , new Tuple(0, 2)     , 1   ], 
+     [ [ 1, 2]    , new Tuple(1, 2)     , 2     , 2         , true     , outOfRange      , []                   , true    , new Tuple(2, 4)     , 3   ],
+     [ [-1, 0,  1], new Tuple(-1, 0, 1) , 3     , 0         , false    , incorrectElement, [new Tuple(-1, 0, 1)], false   , new Tuple(-2, 0,  2), 0   ],  
+     [ [-1, 2, -1], new Tuple(-1, 2, -1), 3     , 2         , true     , incorrectElement, []                   , true    , new Tuple(-2, 4, -2), 0   ]
 ];
 
 const staticTupleTests = [
