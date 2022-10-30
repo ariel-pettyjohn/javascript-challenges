@@ -8,7 +8,7 @@ const tupleInstanceTests = [
     [  [ 0, 1]    , new NonRepeatingTuple(0, 1)     , 2     , 1         , false    , outOfRange      , [new NonRepeatingTuple(0, 1)]    , false   , new NonRepeatingTuple(0, 2)     , 1    ], 
     [  [ 1, 2]    , new NonRepeatingTuple(1, 2)     , 2     , 2         , true     , outOfRange      , []                               , true    , new NonRepeatingTuple(2, 4)     , 3    ],
     [  [-1, 0,  1], new NonRepeatingTuple(-1, 0, 1) , 3     , 0         , false    , incorrectElement, [new NonRepeatingTuple(-1, 0, 1)], false   , new NonRepeatingTuple(-2, 0,  2), 0    ],  
-    //[  [-1, 2, -1], new NonRepeatingTuple(-1, 2, -1), 3     , 2         , true     , incorrectElement, []                               , true    , new NonRepeatingTuple(-2, 4, -2), 0    ]
+    [  [-1, 2, -1], new NonRepeatingTuple(-1, 2)    , 2     , 2         , true     , outOfRange      , []                               , true    , new NonRepeatingTuple(-2, 4)    , 1    ]
 ];
 
 const staticTupleTests = [
