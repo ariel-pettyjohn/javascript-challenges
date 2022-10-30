@@ -13,3 +13,7 @@ export interface IMapCallback {
 export interface IReduceCallback {
     (x: any, y: any): boolean
 }
+
+export interface ICallback {
+    (x: any, y: any): any
+}

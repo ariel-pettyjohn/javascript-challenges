@@ -11,9 +11,11 @@
     },
     "exclude": [
         "./build", 
-        "./src/algorithms/choose.ts",     // Tests still under development
-        "./src/algorithms/fibonacci.ts",  // Tests still under development
-        "./src/algorithms/primeSieve.ts", // Tests still under development
+        "./src/algorithms/choose.ts",                 // Tests still under development
+        "./src/algorithms/fibonacci.ts",              // Tests still under development
+        "./src/algorithms/primeSieve.ts",             // Tests still under development
+        "./src/data-structures/NonRepeatingTuple.ts", // Tests still under development
+        "./src/data-structures/Tuple.ts",             // Tests still under development
         "./tests"
     ]
 }
