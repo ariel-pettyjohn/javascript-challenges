@@ -9,14 +9,13 @@ export default class Tuple {
         const _length = this.elements.length;
         return _length;
     }
-    /*
-    static range (n: number, offset: number = 0): Tuple {
-        if (n === 1) return new Tuple(offset);
-        const tuple: Tuple = new Tuple(...Array(n).keys());
-        const keyToOffsetKey = (key: number): number => key + offset;
+    static range(n, offset = 0) {
+        if (n === 1)
+            return new Tuple(offset);
+        const tuple = new Tuple(...Array(n).keys());
+        const keyToOffsetKey = (key) => key + offset;
         return offset ? tuple.map(keyToOffsetKey) : tuple;
     }
-    */
     get(index) {
         const element = this.elements[index];
         return element;
@@ -54,6 +53,14 @@ export default class Tuple {
     }
     every(callback) {
         const result = this.elements.every(callback);
+        return result;
+    }
+    map(callback) {
+        const tuple = new Tuple(...this.elements.map(callback));
+        return tuple;
+    }
+    reduce(reducer) {
+        const result = this.elements.reduce(reducer);
         return result;
     }
 }

@@ -3,16 +3,30 @@ import Tuple from '../../build/data-structures/Tuple';
 const outOfRange       = 'Error: Index out of range';
 const incorrectElement = 'Error: Incorrect element type'
 
-const TupleInstanceTests = [
-    /* elements   , tuple               , length, elementAt1, includes2, errorString     , tupleArray           , isUnique */
-    [  [ 0, 1]    , new Tuple(0, 1)     , 2     , 1         , false    , outOfRange      , [new Tuple(0, 1)]    , false     ], 
-    [  [ 1, 2]    , new Tuple(1, 2)     , 2     , 2         , true     , outOfRange      , []                   , true      ],
-    [  [-1, 0,  1], new Tuple(-1, 0, 1) , 3     , 0         , false    , incorrectElement, [new Tuple(-1, 0, 1)], false     ],  
-    [  [-1, 2, -1], new Tuple(-1, 2, -1), 3     , 2         , true     , incorrectElement, []                   , true      ]
+const tupleInstanceTests = [
+    /* elements   , tuple               , length, elementAt1, includes2, errorString     , tupleArray           , isUnique, doubled             , sum */
+    [  [ 0, 1]    , new Tuple(0, 1)     , 2     , 1         , false    , outOfRange      , [new Tuple(0, 1)]    , false   , new Tuple(0, 2)     , 1    ], 
+    [  [ 1, 2]    , new Tuple(1, 2)     , 2     , 2         , true     , outOfRange      , []                   , true    , new Tuple(2, 4)     , 3    ],
+    [  [-1, 0,  1], new Tuple(-1, 0, 1) , 3     , 0         , false    , incorrectElement, [new Tuple(-1, 0, 1)], false   , new Tuple(-2, 0,  2), 0    ],  
+    [  [-1, 2, -1], new Tuple(-1, 2, -1), 3     , 2         , true     , incorrectElement, []                   , true    , new Tuple(-2, 4, -2), 0    ]
 ];
 
-describe(`Tuple:`, () => {
-    TupleInstanceTests.forEach(([
+const staticTupleTests = [
+    [3, 4, new Tuple(4, 5, 6)      ],
+    [4, 0, new Tuple(0, 1, 2, 3)   ],
+    [5, 2, new Tuple(2, 3, 4, 5, 6)]
+];  
+
+describe(`Tuple`, () => {
+    describe(`range returns`, () => {
+        staticTupleTests.forEach(([n, offset, tuple]) => {
+            test(`${tuple} when n is ${n}, and offset is ${offset}`, () => {
+                expect(Tuple.range(n, offset)).toEqual(tuple);
+            });
+        });
+    });
+
+    tupleInstanceTests.forEach(([
         elements, 
         tuple, 
         length, 
@@ -20,9 +34,11 @@ describe(`Tuple:`, () => {
         includes2,
         errorString,
         tupleArray,
-        isUnique
+        isUnique,
+        doubled,
+        sum
     ]) => {
-        describe(`Constructor produces instance ${tuple}:`, () => {
+        describe(`constructor produces instance ${tuple}:`, () => {
             test(`When given ${elements}`, () => {
                 expect(new Tuple(...elements)).toEqual(tuple);
             });
@@ -41,6 +57,14 @@ describe(`Tuple:`, () => {
 
             test(`That's unique with respect to ${tupleArray}`, () => {
                 expect(tuple.isUnique(tupleArray)).toBe(isUnique);
+            });
+
+            test(`That's equal to ${doubled} when doubled`, () => {
+                expect(tuple.map((x) => 2 * x)).toEqual(doubled);
+            });
+
+            test(`That sums to ${sum}`, () => {
+                expect(tuple.reduce((x, y) => x + y)).toEqual(sum);
             });
 
             test(`That cannot be modified at index 2`, () => {

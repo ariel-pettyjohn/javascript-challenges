@@ -14,14 +14,12 @@ export default class Tuple {
         return _length;
     }
 
-    /*
     static range (n: number, offset: number = 0): Tuple {
         if (n === 1) return new Tuple(offset);
         const tuple: Tuple = new Tuple(...Array(n).keys());
         const keyToOffsetKey = (key: number): number => key + offset;
         return offset ? tuple.map(keyToOffsetKey) : tuple;
     }
-    */
 
     get (index: number): any {
         const element: any = this.elements[index];
@@ -64,7 +62,6 @@ export default class Tuple {
         return result;
     }
 
-    /*
     map (callback: ICallback): Tuple {
         const tuple: Tuple = new Tuple(...this.elements.map(callback));
         return tuple;
@@ -74,5 +71,4 @@ export default class Tuple {
         const result: any = this.elements.reduce(reducer);
         return result;
     }
-    */
 }
