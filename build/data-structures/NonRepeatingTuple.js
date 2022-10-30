@@ -1,49 +1,45 @@
-import { ICallback } from "../interfaces";
-
 import Tuple from "./Tuple";
-
 export default class NonRepeatingTuple extends Tuple {
-    constructor (...elements: any[]) {
-        const filteredElements: any[] = [];
-        elements.forEach((element: any) => {
+    constructor(...elements) {
+        const filteredElements = [];
+        elements.forEach((element) => {
             if (!filteredElements.includes(element)) {
                 filteredElements.push(element);
             }
         });
         super(...filteredElements);
     }
-
-    static fromTuple (tuple: Tuple): NonRepeatingTuple {
+    static fromTuple(tuple) {
         const nonRepeatingTuple = new NonRepeatingTuple(...tuple.toArray());
         return nonRepeatingTuple;
     }
-
-    static range (n: number, offset: number = 0): NonRepeatingTuple {
-        const tuple             = Tuple.range(n, offset);
+    static range(n, offset = 0) {
+        const tuple = Tuple.range(n, offset);
         const nonRepeatingTuple = NonRepeatingTuple.fromTuple(tuple);
         return nonRepeatingTuple;
     }
-
-    set (index: number, element: any): void | string {
+    set(index, element) {
         try {
             if (!this.elements[index]) {
                 throw new Error('Index out of range');
-            } else if (typeof element !== typeof this.elements[index]) {
+            }
+            else if (typeof element !== typeof this.elements[index]) {
                 throw new Error('Incorrect element type');
-            } else if (this.elements.includes(element)) {
+            }
+            else if (this.elements.includes(element)) {
                 throw new Error('Element not unique');
-            } else {
+            }
+            else {
                 this.elements[index] = element;
             }
-        } catch (error: unknown) {
+        }
+        catch (error) {
             console.error(error);
             return error?.toString();
         }
     }
-
-    map (callback: ICallback): NonRepeatingTuple {
-        const nonRepeatingTuple: NonRepeatingTuple 
-            = new NonRepeatingTuple(...this.elements.map(callback));
+    map(callback) {
+        const nonRepeatingTuple = new NonRepeatingTuple(...this.elements.map(callback));
         return nonRepeatingTuple;
     }
 }

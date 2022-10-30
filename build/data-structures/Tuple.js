@@ -16,6 +16,10 @@ export default class Tuple {
         const keyToOffsetKey = (key) => key + offset;
         return offset ? tuple.map(keyToOffsetKey) : tuple;
     }
+    toArray() {
+        const array = this.elements;
+        return array;
+    }
     get(index) {
         const element = this.elements[index];
         return element;
