@@ -8,25 +8,27 @@ export default class Tuple {
             this.elements[index] = element;
         });   
     }
-
+    
     get length (): number {
         const _length: number = this.elements.length;
         return _length;
     }
-
+    
+    /*
     static range (n: number, offset: number = 0): Tuple {
         if (n === 1) return new Tuple(offset);
         const tuple: Tuple = new Tuple(...Array(n).keys());
         const keyToOffsetKey = (key: number): number => key + offset;
         return offset ? tuple.map(keyToOffsetKey) : tuple;
     }
+    */
 
     get (index: number): any {
         const element: any = this.elements[index];
         return element;
     }
-
-    set (index: number, element: any): void {
+   
+    set (index: number, element: any): void | string {
         try {
             if (!this.elements[index]) {
                 throw new Error('Index out of range');
@@ -37,10 +39,11 @@ export default class Tuple {
             }
         } catch (error: unknown) {
             console.error(error);
-            return;
+            return error?.toString();
         }
     }
 
+    /*
     includes (target: any): boolean {
         const elementIsTarget = (element: any) => element === target;
         const result: boolean = this.elements.some(elementIsTarget);
@@ -71,4 +74,5 @@ export default class Tuple {
         const result: any = this.elements.reduce(reducer);
         return result;
     }
+    */
 }
