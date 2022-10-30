@@ -1,7 +1,7 @@
-import { ICallback } from "../interfaces";
+// import { ICallback } from "../interfaces";
 
 export default class Tuple {
-    elements: any[] = [];
+    private elements: any[] = [];
     
     constructor (...elements: any[]) {
         elements.forEach((element: any, index: number) => {
@@ -13,7 +13,7 @@ export default class Tuple {
         const _length: number = this.elements.length;
         return _length;
     }
-    
+
     /*
     static range (n: number, offset: number = 0): Tuple {
         if (n === 1) return new Tuple(offset);
@@ -22,7 +22,7 @@ export default class Tuple {
         return offset ? tuple.map(keyToOffsetKey) : tuple;
     }
     */
-
+   
     get (index: number): any {
         const element: any = this.elements[index];
         return element;

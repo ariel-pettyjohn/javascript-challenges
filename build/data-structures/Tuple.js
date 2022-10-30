@@ -1,9 +1,14 @@
 export default class Tuple {
-    constructor(...elements) {
-        this.elements = [];
-        elements.forEach((element, index) => {
-            this.elements[index] = element;
+    constructor(..._elements) {
+        this._elements = [];
+        _elements.forEach((element, index) => {
+            this._elements[index] = element;
         });
+    }
+    get elements() {
+        const _elements = this._elements;
+        ;
+        return _elements;
     }
     get length() {
         const _length = this.elements.length;
