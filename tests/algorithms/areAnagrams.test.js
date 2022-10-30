@@ -1,10 +1,10 @@
 import areAnagrams from '../../build/algorithms/areAnagrams';
 
 const tests = [
-    [['cat', 'act'], true]
+    ['cat', 'act', true]
 ];
 
-tests.forEach(([[string1, string2], expectedValue]) => {
+tests.forEach(([string1, string2, expectedValue]) => {
     const text = `of ${string1} and ${string2} should be ${expectedValue}`;
 
     test(`areAnagrams ${text}`, () => {
