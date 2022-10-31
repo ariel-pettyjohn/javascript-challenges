@@ -2,9 +2,7 @@ import Tuple from '../data-structures/Tuple';
 function getTargetReducerIndexTuples(values, target, n, reducer, indexTuples = [], valueTuples = [], indices = new Tuple(...Array(n).fill(0)), loopDepth = 1) {
     const initialIndex = loopDepth === 1 ? 0 : indices.get(loopDepth - 2) + 1;
     for (let index = initialIndex; index < values.length; index++) {
-        console.log(indices, loopDepth - 1);
         indices.set(loopDepth - 1, index);
-        console.log(indices, loopDepth - 1);
         if (n === loopDepth) {
             const keyToIndex = (key) => indices.get(key);
             const indexToValue = (index) => values[index];

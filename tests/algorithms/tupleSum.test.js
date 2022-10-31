@@ -5,13 +5,13 @@ import {
 
 import Tuple from '../../build/data-structures/Tuple';
 
-const getTargetSumTupleIndicesTests = [
+const getTargetSumSummandIndexTupleTests = [
     [[2, 7, 11, 15], 9, new Tuple(0, 1)],
-    [[3, 2, 4]     , 6, new Tuple(1, 2)],
-    [[3, 3]        , 6, new Tuple(0, 1)]
+    [[3, 2,  4    ], 6, new Tuple(1, 2)],
+    [[3, 3        ], 6, new Tuple(0, 1)]
 ];
 
-getTargetSumTupleIndicesTests.forEach(([summands, targetSum, expectedIndexArray]) => {
+getTargetSumSummandIndexTupleTests.forEach(([summands, targetSum, expectedIndexArray]) => {
     describe(`getTargetSumSummandIndexTuple:`, () => {
         test(`given ${summands} and ${targetSum}, returns ${expectedIndexArray}`, () => {
             expect(getTargetSumSummandIndexTuple(summands, targetSum))
