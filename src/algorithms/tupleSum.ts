@@ -1,4 +1,4 @@
-import Tuple             from '../data-structures/Tuple';
+import Tuple from '../data-structures/Tuple';
 
 import { ICallback } from '../interfaces';
 
@@ -12,8 +12,7 @@ function getTargetReducerIndexTuples (
     //TODO: implement static pad method and 
     //      replace below with Tuple.pad([], n, 0)
     indices     : Tuple   = new Tuple(...Array(n).fill(0)), 
-    loopDepth   : number  = 1,
-    nonRepeating: boolean = false
+    loopDepth   : number  = 1
 ): Tuple[] { 
     const initialIndex: number 
         = loopDepth === 1 ? 0 : indices.get(loopDepth - 2) + 1;

@@ -2,7 +2,7 @@ import Tuple from '../data-structures/Tuple';
 function getTargetReducerIndexTuples(values, target, n, reducer, indexTuples = [], valueTuples = [], 
 //TODO: implement static pad method and 
 //      replace below with Tuple.pad([], n, 0)
-indices = new Tuple(...Array(n).fill(0)), loopDepth = 1, nonRepeating = false) {
+indices = new Tuple(...Array(n).fill(0)), loopDepth = 1) {
     const initialIndex = loopDepth === 1 ? 0 : indices.get(loopDepth - 2) + 1;
     for (let index = initialIndex; index < values.length; index++) {
         indices.set(loopDepth - 1, index);
