@@ -9,6 +9,7 @@ export default class Tuple {
         const _length = this.elements.length;
         return _length;
     }
+    // TODO: implement static pad method
     static range(n, offset = 0) {
         if (n === 1)
             return new Tuple(offset);

@@ -14,6 +14,8 @@ export default class Tuple {
         return _length;
     }
 
+    // TODO: implement static pad method
+
     static range (n: number, offset: number = 0): Tuple {
         if (n === 1) return new Tuple(offset);
         const tuple: Tuple = new Tuple(...Array(n).keys());

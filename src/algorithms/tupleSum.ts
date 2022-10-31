@@ -3,16 +3,16 @@ import Tuple from '../data-structures/Tuple';
 import { ICallback } from '../interfaces';
 
 function getTargetReducerIndexTuples (
-    values      : number[],
-    target      : any,
-    n           : number,
-    reducer     : ICallback,
-    indexTuples : Tuple[] = [],
-    valueTuples : Tuple[] = [],
-    //TODO: implement static pad method and 
-    //      replace below with Tuple.pad([], n, 0)
-    indices     : Tuple   = new Tuple(...Array(n).fill(0)), 
-    loopDepth   : number  = 1
+    values     : number[],
+    target     : any,
+    // TODO: replace indices with an n-length tuple and make n derived*
+    n          : number,
+    reducer    : ICallback,
+    indexTuples: Tuple[] = [],
+    valueTuples: Tuple[] = [],
+    // TODO: replace indices with an n-length tuple and make n derived*
+    indices    : Tuple   = new Tuple(...Array(n).fill(0)), 
+    loopDepth  : number  = 1
 ): Tuple[] { 
     const initialIndex: number 
         = loopDepth === 1 ? 0 : indices.get(loopDepth - 2) + 1;
@@ -64,13 +64,18 @@ export function getTargetSumSummandIndexTuple (
     summands : number[],
     targetSum: number
 ): Tuple {
+    // const initialIndices: [0, 0];
     const indexTuples: Tuple[] 
+        // = getTargetSumIndexTuples(summands, targetSum, initialIndices);
         = getTargetSumIndexTuples(summands, targetSum, 2);
     const indexTuple : Tuple = indexTuples[0];
     return indexTuple;
 }
 
 export function getZeroSumSummandTriples (summands: number[]): Tuple[] {
+    // const initialIndices: [0, 0, 0]; 
+    // const indexTriples  : Tuple[] 
+    //     = getTargetSumIndexTuples(summands, 0, initialIndices);
     const indexTriples  : Tuple[] = getTargetSumIndexTuples(summands, 0, 3);
     const indexTripleToSummandTriple = (indexTriple: Tuple) => {
         const indexToSummand = (index: number): number => summands[index];
