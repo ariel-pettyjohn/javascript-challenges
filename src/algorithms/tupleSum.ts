@@ -1,27 +1,31 @@
-import Tuple from '../data-structures/Tuple';
+import Tuple             from '../data-structures/Tuple';
 
 import { ICallback } from '../interfaces';
 
 function getTargetReducerIndexTuples (
-    values     : number[],
-    target     : any,
-    n          : number,
-    reducer    : ICallback,
-    indexTuples: Tuple[] = [],
-    valueTuples: Tuple[] = [],
-    indices    : Tuple   = new Tuple(...Array(n).fill(0)),
-    loopDepth  : number  = 1
+    values      : number[],
+    target      : any,
+    n           : number,
+    reducer     : ICallback,
+    indexTuples : Tuple[] = [],
+    valueTuples : Tuple[] = [],
+    //TODO: implement static pad method and 
+    //      replace below with Tuple.pad([], n, 0)
+    indices     : Tuple   = new Tuple(...Array(n).fill(0)), 
+    loopDepth   : number  = 1,
+    nonRepeating: boolean = false
 ): Tuple[] { 
     const initialIndex: number 
-        = loopDepth === 1 ? 0: indices.get(loopDepth - 2) + 1;
-    for (let index = initialIndex; index < values.length; index++) {
+        = loopDepth === 1 ? 0 : indices.get(loopDepth - 2) + 1;
+    for (let index = initialIndex; index < values.length; index++) {    
         indices.set(loopDepth - 1, index);
         if (n === loopDepth) {
             const keyToIndex   = (key  : number): number => indices.get(key);
             const indexToValue = (index: number): number => values[index];
             const indexCandidate: Tuple 
                 = Tuple.range(loopDepth, 0).map(keyToIndex); 
-            const valueCandidate: Tuple = indexCandidate.map(indexToValue);
+            const valueCandidate: Tuple 
+                = indexCandidate.map(indexToValue);
             const candidateReducesToTarget: boolean 
                 = valueCandidate.reduce(reducer) === target;
             const candidateIsUnique: boolean 
